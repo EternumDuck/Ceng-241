@@ -1,0 +1,7 @@
+# ninja log v5
+4	53	7245426230503469	CMakeFiles/ceng241.dir/Staff.cpp.obj	bd334ae4487bfbb5
+10	54	7245426230503469	CMakeFiles/ceng241.dir/Nurse.cpp.obj	5f82752a0d0cb590
+13	54	7245426230523502	CMakeFiles/ceng241.dir/Doctor.cpp.obj	97d942f53a035ebc
+7	263	7245426232618953	CMakeFiles/ceng241.dir/Patient.cpp.obj	6a04d7c02b497944
+0	407	7245426234052170	CMakeFiles/ceng241.dir/main.cpp.obj	13a33aebc8f86834
+407	552	7245426235472588	ceng241.exe	fbb03a6e607f4b33
