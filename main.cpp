@@ -10,34 +10,43 @@ int main() {
     Patient Rooms[6][3];
     string name;
 
-    int choice;
+    int choice=2;
 
-    while(1){
+    do{
     std::cout << "Welcome to X Hospital!" << std::endl;
     std::cout << "1 - Randevu alma" << std::endl;
     std::cout << "2 - Randevu kontrol etme" << std::endl;
     std::cout << "3 - Doktor giris" << std::endl;
     std::cout << "4 - Hemsire giris" << std::endl;
     std::cout << "5 - Staff giris" << std::endl;
+    std::cout << "Your choice: ";
     std::cin >> choice;
     switch (choice) {
+        case 0:
+            std::cout << "Cikis ";
+            break;
         case 1:
             //
-            int ID,day;
+            int ID,day,doctornumber;
             int dept,randevu,room;
 
-            std::cout << "Please enter your ID, name" << std::endl;
-            std::cin >> ID >> name;
+            std::cout << "Please enter your ID: ";
+            std::cin >> ID;
+            std::cout << "Please enter your name: ";
+            std::cin >> name;
             std::cout << "Please enter your desired department" << std::endl;
-            std::cout << "1 - Neurology\n2-KBB\n3 - Cardiology" << std::endl;
+            std::cout << "1 - Neurology\n2-KBB\n3 - Cardiology\n Your choice: 1";
             std::cin >> dept;
+            std::cout << "Select a doctor" << std::endl;
+            std::cout << "1 - Doctor1\n2- Doctor2\n3 - Doctor3\n Your choice: ";
+            //doctor list
+            //std::cin >> doctornumber;
 
-            std::cout << "Select time and date (Name of day and NO of room)" << std::endl;
-            //departmanin tum odalarini listele bir hafta icin
+            //doctorun boş olduğu saatler
             //PAZARTESI     SALI        CARSAMBA        PERSEMBE        CUMA        CUMARTESI       PAZAR
-            // ODA1         .
-            // ODA2         .           .               .
-            // ODA3
+            // Doctor1         .
+            // Doctor2         .           .               .
+            // Doctor3
 
             std::cin >> day >> room;
             //hastayi vektore at
@@ -68,18 +77,6 @@ int main() {
 
         default:
             std::cout << "Error wrong input" << std::endl;
-    }}
-
-
-
-
-
-
-
-
-
-
-
-
+    }}while(choice!=0);
     return 0;
 }
