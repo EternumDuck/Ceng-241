@@ -1,5 +1,5 @@
-#ifndef CENG241_PATIENT_H
-#define CENG241_PATIENT_H
+#ifndef PATIENT_H
+#define PATIENT_H
 #include <vector>
 #include <string>
 using namespace std;
