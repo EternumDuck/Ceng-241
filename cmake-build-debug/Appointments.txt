@@ -1,0 +1,3 @@
+3214 1 6 backpain Urology
+3215 3 6 backpain Urology
+3216 2 5 heartache Cardiology

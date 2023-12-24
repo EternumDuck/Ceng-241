@@ -1,0 +1,5 @@
+Cardiology 12
+Neurology 22
+Urology 11
+KBB 10
+KBB 10

@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "c:/ceng241/cmake-build-debug"
+			"value" : "c:/ceng241/Ceng-241/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -575,7 +575,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/ceng241/cmake-build-debug/CMakeFiles/pkgRedirects"
+			"value" : "C:/ceng241/Ceng-241/cmake-build-debug/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -647,7 +647,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/ceng241"
+			"value" : "C:/ceng241/Ceng-241"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -1275,7 +1275,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/ceng241/cmake-build-debug"
+			"value" : "C:/ceng241/Ceng-241/cmake-build-debug"
 		},
 		{
 			"name" : "ceng241_IS_TOP_LEVEL",
@@ -1299,7 +1299,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/ceng241"
+			"value" : "C:/ceng241/Ceng-241"
 		}
 	],
 	"kind" : "cache",
