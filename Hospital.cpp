@@ -48,7 +48,7 @@ void Hospital::saveDataToFile() const {
             // Doktor için randevuları ayarlama
             for (int i = 0; i < 14; i++) {
                 for (int j = 0; j < 9; j++) {
-                    file << doctor.randevu[i][j] << " ";
+                    file << doctors.back().randevu[i][j] << " ";
                 }
             }
             file << "\n";
