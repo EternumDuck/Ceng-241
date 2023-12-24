@@ -3,9 +3,7 @@ project(ceng241)
 
 set(CMAKE_CXX_STANDARD 17)
 
-include_directories(.)
-
-add_executable(ceng241 
+add_executable(ceng241 main.cpp
         Doctor.cpp
         Doctor.h
         Hospital.cpp
