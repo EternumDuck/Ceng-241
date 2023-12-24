@@ -5,7 +5,6 @@
 using namespace std;
 
 class Patient {
-    private:
     string name;
     string bloodtype;
     int ID,age;
@@ -14,18 +13,12 @@ class Patient {
     vector <string> prescription;
     vector <string> treatment;
 public:
+    Patient(int ID_val,string name_val)
+    :ID{ID_val},name{name_val}{
+    }
     Patient(){
 
     }
-    Patient(int ID, const std::string& name);
-    int getID() const;
-    const std::string& getName() const;
-    void setAge(int age);
-    void setWeight(float weight);
-    void setHeight(float height);
-    void setBloodType(const std::string& bloodtype);
-    void setBloodSugar(float bloodsugar);
-    void setTreatmentCost(float treatmentcost);
 
 };
 
