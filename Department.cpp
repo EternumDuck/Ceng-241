@@ -62,15 +62,14 @@ void Department::loadAppointments() {
 
     fstream appointmentFile;
     appointmentFile.open("Appointments.txt",ios::in);
-    int day;
-    int time;
+    int day,time,ID;
     string complaint;
     string appointmentDepartment;
 
     if (appointmentFile.is_open()) {
-        while(appointmentFile >> day >> time >> complaint >> appointmentDepartment){
+        while(appointmentFile >> ID >> day >> time >> complaint >> appointmentDepartment){
             if(appointmentDepartment == this->name){
-                appointments.push_back(Appointment(day,time,complaint,appointmentDepartment));
+                appointments.push_back(Appointment(ID,day,time,complaint,appointmentDepartment));
                 schedule[day][time] = true; //Randevuyu doldur
             }
         }

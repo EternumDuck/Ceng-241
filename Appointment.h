@@ -7,12 +7,13 @@ using namespace std;
 
 class Appointment {
 private:
+    int ID;
     int day;
     int time;
     string complaint;
     string department;
 public:
-    Appointment(int day, int time, string complaint,string department);
+    Appointment(int ID,int day, int time, string complaint,string department);
     Appointment();
     void reschedule();
     void cancel();
