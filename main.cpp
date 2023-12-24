@@ -55,7 +55,7 @@ int main() {
                         cout << hours + 12 << ":00" << setw(14);
                     }
                     else{
-                        cout << "Busy" << setw(16);
+                        cout << "Busy" << setw(16); // Duzgun calismiyor duzeltilmesi lazim
                     }
                 }
                 cout << endl;
