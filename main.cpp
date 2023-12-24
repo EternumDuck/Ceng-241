@@ -1,68 +1,93 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <fstream>
+#include <iomanip>
 #include "Patient.h"
-#include "Staff.h"
 #include "Doctor.h"
 #include "Nurse.h"
+#include "Department.h"
+#include "Hospital.h"
+#include "Appointment.h"
+
+using namespace std;
 
 int main() {
-    Patient Rooms[6][3];
-    string name;
+
+    Hospital hospital("Saint Serdar Arslan Hospital");
+   // hospital.addDepartment("KBB",10); // works
 
     int choice;
+    string name;
+    string complaints;
+    string dayNames[] = {"Monday", "Tuesday", "Wednesday",
+                         "Thursday", "Friday", "Saturday",
+                         "Sunday"};
+
+    cout << "Welcome to "<< hospital.getName() << std::endl;
 
     while(1){
-    std::cout << "Welcome to X Hospital!" << std::endl;
-    std::cout << "1 - Randevu alma" << std::endl;
-    std::cout << "2 - Randevu kontrol etme" << std::endl;
-    std::cout << "3 - Doktor giris" << std::endl;
-    std::cout << "4 - Hemsire giris" << std::endl;
-    std::cout << "5 - Staff giris" << std::endl;
-    std::cin >> choice;
+    cout << "1 - Make an appointment" << std::endl;
+    cout << "2 - Check or change your appointment" << std::endl;
+    cout << "3 - Login (Staff only) " << std::endl;
+    cin >> choice;
+
     switch (choice) {
         case 1:
             //
-            int ID,day;
-            int dept,randevu,room;
+            int ID;
+            int department;
+            int date,time;
 
-            std::cout << "Please enter your ID, name" << std::endl;
-            std::cin >> ID >> name;
-            std::cout << "Please enter your desired department" << std::endl;
-            std::cout << "1 - Neurology\n2-KBB\n3 - Cardiology" << std::endl;
-            std::cin >> dept;
+            cout << "Please enter your ID, name" << endl;
+            cin >> ID >> name;
+            cout << "Please enter your desired department" << endl;
+            hospital.showHospital();
+            cin >> department;
+            cout << "Please enter your desired date and time" << endl;
+            for (int day = 0; day < 7; ++day) {
+                cout << setw(10) << " " << dayNames[day];
+            }
+            for(int hours = 0; hours < 6; ++hours){
+                cout << setw(10);
+                for (int day = 0; day < 7; ++day) {
+                    if(!hospital.departments[department].schedule[day][hours]){
+                        cout << hours + 12 << ":00" << setw(14);
+                    }
+                    else{
+                        cout << "Busy" << setw(16);
+                    }
+                }
+                cout << endl;
+            }
+            cin >> date >> time;
 
-            std::cout << "Select time and date (Name of day and NO of room)" << std::endl;
-            //departmanin tum odalarini listele bir hafta icin
-            //PAZARTESI     SALI        CARSAMBA        PERSEMBE        CUMA        CUMARTESI       PAZAR
-            // ODA1         .
-            // ODA2         .           .               .
-            // ODA3
-
-            std::cin >> day >> room;
-            //hastayi vektore at
-            Rooms[day][room] = *new Patient(ID,name);
+            cout << "Please write your symptoms" << endl;
+            cin >> complaints;
+            hospital.departments[department].takeAppointment(); // bos fonksiyon
             break;
         case 2:
             //
-            std::cout << "Please enter your ID" << std::endl;
+            cout << "Please enter your ID" << endl;
             // check rooms vector
             break;
         case 3:
-            //Doctor
-            std::cout << "Please enter your ID and password" << std::endl;
-            // Welcome Dr."name"
-            std::cout;
+            int password;
+            // ID ve Password ile departments classindaki nurses ve doctors vektorlerindeki ID ve Passwordlari eslestirdiginde giris sagle
+            cout << "Please enter your ID and password" << endl;
+            cin >> ID >> password;
+            /*if(checkIDpass()){
+             cout << "Welcome"
 
-            break;
-        case 4:
-            //Nurse
-            std::cout << "Please enter your ID and password" << std::endl;
 
-            break;
-        case 5:
-            //Staff
-            std::cout << "Please enter your ID and password" << std::endl;
+
+
+
+
+
+              }
+
+             */
 
             break;
 

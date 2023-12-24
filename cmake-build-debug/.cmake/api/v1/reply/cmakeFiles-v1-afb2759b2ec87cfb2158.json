@@ -149,8 +149,8 @@
 	"kind" : "cmakeFiles",
 	"paths" : 
 	{
-		"build" : "C:/ceng241/cmake-build-debug",
-		"source" : "C:/ceng241"
+		"build" : "C:/ceng241/Ceng-241/cmake-build-debug",
+		"source" : "C:/ceng241/Ceng-241"
 	},
 	"version" : 
 	{
