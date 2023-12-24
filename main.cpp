@@ -51,7 +51,7 @@ int main() {
             for(int hours = 0; hours < 6; ++hours){
                 cout << setw(10);
                 for (int day = 0; day < 7; ++day) {
-                    if(!hospital.departments[department].schedule[day][hours]){
+                    if(!hospital.departments[department].schedule[day][hours]){ // Hospital veya Department classina bunun isBusy fonksiyonunu yaz
                         cout << hours + 12 << ":00" << setw(14);
                     }
                     else{
@@ -64,19 +64,28 @@ int main() {
 
             cout << "Please write your symptoms" << endl;
             cin >> complaints;
-            hospital.departments[department].takeAppointment(); // bos fonksiyon
+            hospital.departments[department].takeAppointment(); // bos fonksiyon bunu doldurup Appointments.txt ye appendle (ID,day,hour,complaint,Departman ismi(this.name calisir buyuk ihtimalle))
             break;
         case 2:
             //
             cout << "Please enter your ID" << endl;
-            // check rooms vector
+            // Department classinin Appointment vectorundeki tum uyelere bakip idsi eslesince, Day hour department ismi yazdiktan sonra 1-degistir 2-iptal et 3-geri menuye gel
+            // 1- degistir icin Appointment vektorundeki bilgileri degistir
+            // 2- idsi eslesen appointment vektorunu tamamen sil
+            // bu guncellemeleri kaydetmek icin sonradan savetofile fonksiyonu
             break;
         case 3:
             int password;
-            // ID ve Password ile departments classindaki nurses ve doctors vektorlerindeki ID ve Passwordlari eslestirdiginde giris sagle
+            Doctor* doctorPtr;
+            // ID ve Password ile departments classindaki nurses ve doctors vektorlerindeki ID ve Passwordlari eslestirdiginde giris sagla, O doktor objesine pointer dondur
+            // Doktor icin 1- Departman chedule gorme 2- Departmanindaki Patientlerin infolarini gorme
+            // 3- Departmandaki patientler icin secip Patient.treatment icine doktorun yaptigi seyi koyucaz
+            // 4- Aynisini yapip bu sefer eczane recetesini yazicaz
+            // 5= Patientleri silme hakki kendi departman icindeki patientleri taburcu edebilme.
+            //
             cout << "Please enter your ID and password" << endl;
             cin >> ID >> password;
-            /*if(checkIDpass()){
+            /* doctorPtr = if(checkIDpass()){
              cout << "Welcome"
 
 
@@ -88,6 +97,13 @@ int main() {
               }
 
              */
+
+            break;
+        case 4:
+            // Staff menejerlergirisi yapabiliriz
+            // Yeni nurse doktor eklemek icin
+            // Yeni departman eklemek icin
+            // Ayrica Patientlerin treatmentlerine gore ucretlerini burdan belirleyebiliriz.
 
             break;
 
