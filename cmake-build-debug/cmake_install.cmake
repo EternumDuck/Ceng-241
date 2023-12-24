@@ -1,4 +1,4 @@
-# Install script for directory: C:/ceng241/Ceng-241
+# Install script for directory: C:/new241branch/Ceng-241
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/ceng241/Ceng-241/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/new241branch/Ceng-241/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

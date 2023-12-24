@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/ceng241/Ceng-241/cmake-build-debug",
-		"source" : "C:/ceng241/Ceng-241"
+		"build" : "C:/new241branch/Ceng-241/cmake-build-debug",
+		"source" : "C:/new241branch/Ceng-241"
 	},
 	"version" : 
 	{
