@@ -43,12 +43,12 @@ void Hospital::saveDataToFile() const {
     if (file.is_open()) {
         // Doktor bilgilerini dosyaya yazma
         for (const Doctor& doctor : doctors) {
-            file << "Doctor " << doctor.getNumber() << " " << doctor.getName() << " " << doctor.getDepartment()<<" ";
+            file << "Doctor " << doctor.getNumber() << " " << doctor.getName() << " " << doctor.getDepartment() << "\n";
 
             // Doktor için randevuları ayarlama
             for (int i = 0; i < 14; i++) {
                 for (int j = 0; j < 9; j++) {
-                    file << doctors.back().randevu[i][j] << " ";
+                    file << doctors[doctor.getNumber()].randevu[i][j] << " ";
                 }
             }
             file << "\n";
@@ -172,3 +172,4 @@ void Hospital::displayAvailableSlots(int doctorNumber) const {
         std::cout << "Invalid doctor number.\n";
     }
 }
+
