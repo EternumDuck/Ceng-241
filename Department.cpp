@@ -5,7 +5,6 @@
 Department::Department(string name, int rooms)
 :name(name),rooms(rooms) {
     loadPeople();
-    loadAppointments();
 }
 
 void Department::loadPeople() {
@@ -58,30 +57,17 @@ void Department::loadPeople() {
     cout << "debug : Loaded departments" << endl;
 }
 
-void Department::loadAppointments() {
-
-    fstream appointmentFile;
-    appointmentFile.open("Appointments.txt",ios::in);
-    int day,time,ID;
-    string complaint;
-    string appointmentDepartment;
-
-    if (appointmentFile.is_open()) {
-        while(appointmentFile >> ID >> day >> time >> complaint >> appointmentDepartment){
-            if(appointmentDepartment == this->name){
-                appointments.push_back(Appointment(ID,day,time,complaint,appointmentDepartment));
-                schedule[day][time] = true; //Randevuyu doldur
-            }
-        }
-    }
-
-}
-
 void Department::showDepartment() {
     cout << this->name << endl;
 
 }
 
-Patient Department::takeAppointment() {
-    return Patient();
+void Department::showDoctors() {
+    int i = 0;
+    for (auto Doctor:doctors) {
+        cout << i << ". "<<Doctor.getName() << "  ";
+        i++;
+    }
+    cout << endl;
+
 }

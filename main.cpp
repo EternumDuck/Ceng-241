@@ -38,12 +38,18 @@ int main() {
             int ID;
             int department;
             int date,time;
+            int prefdoc;
 
             cout << "Please enter your ID, name" << endl;
             cin >> ID >> name;
             cout << "Please enter your desired department" << endl;
             hospital.showHospital();
             cin >> department;
+
+            cout << "Please select your preferred doctor" << endl;
+            hospital.departments[department].showDoctors();
+            cin >> prefdoc;
+
             cout << "Please enter your desired date and time" << endl;
             for (int day = 0; day < 7; ++day) {
                 cout << setw(10) << " " << dayNames[day];
@@ -51,7 +57,7 @@ int main() {
             for(int hours = 0; hours < 6; ++hours){
                 cout << setw(10);
                 for (int day = 0; day < 7; ++day) {
-                    if(!hospital.departments[department].schedule[day][hours]){ // Hospital veya Department classina bunun isBusy fonksiyonunu yaz
+                    if(!hospital.departments[department].doctors[prefdoc].schedule[day][hours]){ // Hospital veya Department classina bunun isBusy fonksiyonunu yaz
                         cout << hours + 12 << ":00" << setw(14);
                     }
                     else{
@@ -60,28 +66,36 @@ int main() {
                 }
                 cout << endl;
             }
-            cin >> date >> time;
-
+           cin >> date >> time;
+            // check if empty
+            //
+            //
+            // if empty
             cout << "Please write your symptoms" << endl;
             cin >> complaints;
-            hospital.departments[department].takeAppointment(); // bos fonksiyon bunu doldurup Appointments.txt ye appendle (ID,day,hour,complaint,Departman ismi(this.name calisir buyuk ihtimalle))
+            //
+            // make appoiuntment class and change schedule to true
+
+
             break;
         case 2:
-            //
+            // furkan
             cout << "Please enter your ID" << endl;
-            // Department classinin Appointment vectorundeki tum uyelere bakip idsi eslesince, Day hour department ismi yazdiktan sonra 1-degistir 2-iptal et 3-geri menuye gel
+            // Department classinin Appointment vectorundeki tum uyelere bakip idsi eslesince, Day hour department ismi doktorismi yazdiktan sonra 1-degistir 2-iptal et 3-geri menuye gel
             // 1- degistir icin Appointment vektorundeki bilgileri degistir
             // 2- idsi eslesen appointment vektorunu tamamen sil
             // bu guncellemeleri kaydetmek icin sonradan savetofile fonksiyonu
+
             break;
         case 3:
             int password;
             Doctor* doctorPtr;
+            //serhat
             // ID ve Password ile departments classindaki nurses ve doctors vektorlerindeki ID ve Passwordlari eslestirdiginde giris sagla, O doktor objesine pointer dondur
-            // Doktor icin 1- Departman chedule gorme 2- Departmanindaki Patientlerin infolarini gorme
+            // Doktor icin 1- Departman schedule gorme 2- Departmanindaki Patientlerin infolarini gorme
             // 3- Departmandaki patientler icin secip Patient.treatment icine doktorun yaptigi seyi koyucaz
             // 4- Aynisini yapip bu sefer eczane recetesini yazicaz
-            // 5= Patientleri silme hakki kendi departman icindeki patientleri taburcu edebilme.
+            // 5- Patientleri silme hakki kendi departman icindeki patientleri taburcu edebilme.
             //
             cout << "Please enter your ID and password" << endl;
             cin >> ID >> password;
@@ -100,7 +114,7 @@ int main() {
 
             break;
         case 4:
-            // Staff menejerlergirisi yapabiliriz
+            // Staff menejerler girisi yapabiliriz
             // Yeni nurse doktor eklemek icin
             // Yeni departman eklemek icin
             // Ayrica Patientlerin treatmentlerine gore ucretlerini burdan belirleyebiliriz.

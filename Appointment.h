@@ -12,8 +12,9 @@ private:
     int time;
     string complaint;
     string department;
+    string preferred;
 public:
-    Appointment(int ID,int day, int time, string complaint,string department);
+    Appointment(int ID,int day, int time, string complaint,string department,string preferred);
     Appointment();
     void reschedule();
     void cancel();

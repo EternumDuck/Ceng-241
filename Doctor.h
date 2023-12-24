@@ -10,9 +10,14 @@ using namespace std;
 class Doctor : public Staff{
 private:
     string department;
+    vector <Appointment> appointments;
 public:
+    bool schedule[7][6]{false};
     Doctor(const string& name, int ID, int password, const std::string& department) :
-            Staff(name, ID, password), department(department) {}
+            Staff(name, ID, password), department(department) {
+        loadAppointments();
+    }
+    void loadAppointments();
     void viewSchedule();
     void diagnosePatient();
     void prescribeMedicine();

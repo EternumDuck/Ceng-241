@@ -23,13 +23,13 @@ void Hospital::loadDepartments(){
     int rooms;
     if (departmentFile.is_open()) {
         while(departmentFile >> depname >> rooms){
-            std::cout << "Department of " << depname << " has " << rooms << " rooms" << endl;
+           // std::cout << "Department of " << depname << " has " << rooms << " rooms" << endl;
             departments.push_back(Department(depname,rooms));
         }
     }
     else
         cerr << "error opening file" << endl;
-    cout << "debug : Loaded departments" << endl;
+    //cout << "debug : Loaded departments" << endl;
     departmentFile.close();
 
 }

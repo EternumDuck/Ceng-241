@@ -10,9 +10,10 @@ class Staff {
 private:
     int ID,password;
     double salary;
-    std::string name;
+protected:
+    string name;
 public:
-    Staff(const std::string& name, int ID, int password)
+    Staff(const string& name, int ID, int password)
     :name(name), ID(ID), password(password) {
 
     }
@@ -20,6 +21,7 @@ public:
     ~Staff() {
 
     }
+    string getName();
 
 };
 

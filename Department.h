@@ -15,22 +15,21 @@ class Patient;
 
 class Department {
 public:
-    bool schedule[7][6]{false};//move to schedule later
+  //  bool schedule[7][6]{false}; //move to schedule later
 private:
     int rooms;
     string name;
     vector <Nurse> nurses;
     vector <Patient> patients;
-    vector <Doctor> doctors;// move back to private
-    vector <Appointment> appointments;
+    //vector <Appointment> appointments;
 public:
+    vector <Doctor> doctors;// move back to private
     Department(string name, int rooms);
     void loadPeople();
-    Patient takeAppointment();
     Patient takePatient();
     Patient dischargePatient();
-
     void showDepartment();
+    void showDoctors();
     void loadAppointments();
 };
 
