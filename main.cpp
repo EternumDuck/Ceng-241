@@ -86,6 +86,8 @@ int main() {
             // Appointment sınıfındaki "int ID;", "int day;" ve "int time;"
             // private olduğu için çalışmıyor bunların ya public olması lazım ya da getter setter fonksiyonları lazım ona göre fonksiyonun güncellenmesi lazım
             //aşağıdaki döngülerin düzgün çalışması için de ilgili değerlerin atanmış olması lazım.
+            //vektörleri atayan kod 19.satıra gelecek: https://github.com/fc63/atayici/blob/main/debugger.cpp kopyala yapıştır
+            /*
             
             int ID(0),IDCounter(0);
             cout << "Please enter your ID:";
@@ -186,6 +188,7 @@ int main() {
                     }
                 }
             }
+            */
             // Department classinin Appointment vectorundeki tum uyelere bakip idsi eslesince, Day hour department ismi doktorismi yazdiktan sonra 1-degistir 2-iptal et 3-geri menuye gel
             // 1- degistir icin Appointment vektorundeki bilgileri degistir
             // 2- idsi eslesen appointment vektorunu tamamen sil
