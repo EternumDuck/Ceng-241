@@ -16,9 +16,13 @@ private:
 public:
     Appointment(int ID,int day, int time, string complaint,string department,string preferred);
     Appointment();
+    void showAppointment();
     void reschedule();
     void cancel();
     void changecomplaint();
+    int getID() const;
+    int getDay() const;
+    int getTime() const;
 
 };
 

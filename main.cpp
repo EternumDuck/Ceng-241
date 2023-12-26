@@ -26,6 +26,8 @@ int main() {
 
     cout << "Welcome to "<< hospital.getName() << std::endl;
 
+    //write 2 nested for each loops
+
     while(1){
     cout << "1 - Make an appointment" << std::endl;
     cout << "2 - Check or change your appointment" << std::endl;
@@ -36,7 +38,7 @@ int main() {
         case 1:
             //
             int ID;
-            int department;
+            int prefdepartment;
             int date,time;
             int prefdoc;
 
@@ -44,10 +46,10 @@ int main() {
             cin >> ID >> name;
             cout << "Please enter your desired department" << endl;
             hospital.showHospital();
-            cin >> department;
+            cin >> prefdepartment;
 
             cout << "Please select your preferred doctor" << endl;
-            hospital.departments[department].showDoctors();
+            hospital.departments[prefdepartment].showDoctors();
             cin >> prefdoc;
 
             cout << "Please enter your desired date and time" << endl;
@@ -57,7 +59,7 @@ int main() {
             for(int hours = 0; hours < 6; ++hours){
                 cout << setw(10);
                 for (int day = 0; day < 7; ++day) {
-                    if(!hospital.departments[department].doctors[prefdoc].schedule[day][hours]){ // Hospital veya Department classina bunun isBusy fonksiyonunu yaz
+                    if(!hospital.departments[prefdepartment].doctors[prefdoc].schedule[day][hours]){ // Hospital veya Department classina bunun isBusy fonksiyonunu yaz
                         cout << hours + 12 << ":00" << setw(14);
                     }
                     else{
@@ -87,8 +89,6 @@ int main() {
             // private olduğu için çalışmıyor bunların ya public olması lazım ya da getter setter fonksiyonları lazım ona göre fonksiyonun güncellenmesi lazım
             //aşağıdaki döngülerin düzgün çalışması için de ilgili değerlerin atanmış olması lazım.
             //vektörleri atayan kod 19.satıra gelecek: https://github.com/fc63/atayici/blob/main/debugger.cpp kopyala yapıştır
-            /*
-            
             int ID(0),IDCounter(0);
                 cout << "Please enter your ID:";
                 cin >> ID;
@@ -100,12 +100,12 @@ int main() {
                 for(int i=0; i<hospital.departments.size();i++){
                     for (int j = 0; j < hospital.departments[i].doctors.size(); j++) {
                         for (int k = 0; k < hospital.departments[i].doctors[j].appointments.size(); k++) {
-                            if(ID==hospital.departments[i].doctors[j].appointments[k].ID){
+                            if(ID==hospital.departments[i].doctors[j].appointments[k].getID()){
                                 if(IDCounter!=0) {
                                     cout << IDCounter << ". Day: "
-                                         << hospital.departments[i].doctors[j].appointments[k].day << " Time: "
-                                         << hospital.departments[i].doctors[j].appointments[k].time
-                                         << " Department Name: " << hospital.departments[i].name << " Doctor Name:"
+                                         << hospital.departments[i].doctors[j].appointments[k].getDay() << " Time: "
+                                         << hospital.departments[i].doctors[j].appointments[k].getTime()
+                                         << " Department Name: " << hospital.departments[i].getName() << " Doctor Name:"
                                          << hospital.departments[i].doctors[j].getName() << endl;
                                 }
                                 iVector.push_back(i);
@@ -126,9 +126,9 @@ int main() {
                         case 1: {
                             int fchoice(0);
                             cout <<"Day: "
-                                 << hospital.departments[iVector[0]].doctors[jVector[0]].appointments[kVector[0]].day << " Time: "
-                                 << hospital.departments[iVector[0]].doctors[jVector[0]].appointments[kVector[0]].time
-                                 << " Department Name: " << hospital.departments[iVector[0]].name << " Doctor Name:"
+                                 << hospital.departments[iVector[0]].doctors[jVector[0]].appointments[kVector[0]].getDay() << " Time: "
+                                 << hospital.departments[iVector[0]].doctors[jVector[0]].appointments[kVector[0]].getTime()
+                                 << " Department Name: " << hospital.departments[iVector[0]].getName() << " Doctor Name:"
                                  << hospital.departments[iVector[0]].doctors[jVector[0]].getName() << endl;
                             while(1) {
                                 cout << "1-Change" << endl;
@@ -163,9 +163,9 @@ int main() {
                         }
                         default: {
                             cout<< IDCounter<<". Day: "
-                                 << hospital.departments[iVector[0]].doctors[jVector[0]].appointments[kVector[0]].day << " Time: "
-                                 << hospital.departments[iVector[0]].doctors[jVector[0]].appointments[kVector[0]].time
-                                 << " Department Name: " << hospital.departments[iVector[0]].name << " Doctor Name:"
+                                 << hospital.departments[iVector[0]].doctors[jVector[0]].appointments[kVector[0]].getDay() << " Time: "
+                                 << hospital.departments[iVector[0]].doctors[jVector[0]].appointments[kVector[0]].getTime()
+                                 << " Department Name: " << hospital.departments[iVector[0]].getName() << " Doctor Name:"
                                  << hospital.departments[iVector[0]].doctors[jVector[0]].getName() << endl;
                             cout<<"More than one matching appointment found, please select which one you would like to make a transaction with"<<endl<<"Your choice:";
                             int idchoice=0;
@@ -213,7 +213,7 @@ int main() {
                         }
                     }
                 }
-            */
+
             // Department classinin Appointment vectorundeki tum uyelere bakip idsi eslesince, Day hour department ismi doktorismi yazdiktan sonra 1-degistir 2-iptal et 3-geri menuye gel
             // 1- degistir icin Appointment vektorundeki bilgileri degistir
             // 2- idsi eslesen appointment vektorunu tamamen sil
@@ -221,29 +221,79 @@ int main() {
             break;
         }
         case 3:
+            int staffID;
             int password;
-            Doctor* doctorPtr;
+
+            cout << "Please enter your ID and password" << endl;
+
+            cin >>  staffID >> password;
             //serhat
-            // ID ve Password ile departments classindaki nurses ve doctors vektorlerindeki ID ve Passwordlari eslestirdiginde giris sagla, O doktor objesine pointer dondur
             // Doktor icin 1- Departman schedule gorme 2- Departmanindaki Patientlerin infolarini gorme
             // 3- Departmandaki patientler icin secip Patient.treatment icine doktorun yaptigi seyi koyucaz
             // 4- Aynisini yapip bu sefer eczane recetesini yazicaz
             // 5- Patientleri silme hakki kendi departman icindeki patientleri taburcu edebilme.
-            //
-            cout << "Please enter your ID and password" << endl;
-            cin >> ID >> password;
-            /* doctorPtr = if(checkIDpass()){
-             cout << "Welcome"
 
+            //write a nested for each loop to check all departments doctors and nurses
+                for (auto& Department : hospital.departments) {
+                    for (auto& doctor : Department.doctors) {
+                        if (doctor.getID() == staffID && doctor.getPassword() == password) {
+                            while(1){
+                            cout << "Welcome Dr." << doctor.getName() << endl; // Sucessful login for doctor class
+                            cout << "1 - View schedule" << endl;
+                            cout << "2 - View patients" << endl;
+                            cout << "3 - Diagnose patient" << endl;
+                            cout << "4 - Discharge patient" << endl;
+                            cin >> choice;
+                            switch (choice) {
+                                case 1:
+                                    doctor.viewSchedule();
+                                    break;
+                                case 2:
+                                    doctor.viewPatients();
+                                    break;
+                                case 3:
+                                    cout << "Please enter the patient ID" << endl;
+                                    int patientID;
+                                    cin >> patientID;
+                                    for (auto& patient : Department.patients){
+                                        if(patient.getID()==patientID){
+                                            string diagnosis;
+                                            cout<<"Please enter the diagnosis of "<<patient.getName()<<":"<<endl;
+                                            cin.ignore();
+                                            getline(cin, diagnosis);
+                                            patient.setTreatment(diagnosis);
+                                        }
+                                        else
+                                        cout << "Patient not found" << endl;
+                                    }
+                                    break;
+                                case 4:
+                                    cout << "Please enter the patient ID" << endl;
+                                    int patientID2;
+                                    cin >> patientID2;
+                                    for (auto& patient : Department.patients){
+                                        if(patient.getID()==patientID2){
+                                            patient.discharge();
+                                            doctor.appointments.erase(doctor.appointments.begin()+patientID2); // iterator points to the beggining then adds the lkeft side as an offset and deletes that
+                                        }
+                                        else
+                                            cout << "Patient not found" << endl;
+                                    }
+                                    break;
+                                default:
+                                    std::cout << "Error wrong input" << std::endl;
+                            }
+                        }
+                    }
+                    }
+                    for (auto& nurses : Department.nurses) {
+                        if (nurses.getID() == staffID && nurses.getPassword() == password) {
+                            cout << "Welcome nurse " << nurses.getName() << endl; // Sucessful login for doctor class
 
+                        }
+                    }
 
-
-
-
-
-              }
-
-             */
+                }
 
             break;
         case 4:

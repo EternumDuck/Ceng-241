@@ -1,5 +1,7 @@
 #include "Patient.h"
 
+#include <utility>
+
 const std::string& Patient::getName() const {
     return name;
 }
@@ -25,4 +27,16 @@ void Patient::setBloodSugar(float bloodsugar) {
 
 void Patient::setTreatmentCost(float treatmentcost) {
     this->treatmentCost = treatmentcost;
+}
+
+int Patient::getID() const {
+    return this->ID;
+}
+
+void Patient::setTreatment(string treatmentval) {
+    this->treatment = std::move(treatmentval);
+}
+
+void Patient::discharge() {
+
 }

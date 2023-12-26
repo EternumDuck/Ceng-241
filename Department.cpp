@@ -71,3 +71,11 @@ void Department::showDoctors() {
     cout << endl;
 
 }
+
+vector<Patient> Department::getPatients() {
+    return vector<Patient>();
+}
+
+string Department::getName() {
+    return this->name;
+}

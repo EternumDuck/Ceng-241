@@ -21,6 +21,12 @@ public:
     ~Staff() {
 
     }
+    int getID() const{
+        return ID;
+    }
+    int getPassword() const{
+        return password;
+    }
     string getName();
 
 };
