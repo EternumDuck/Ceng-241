@@ -90,104 +90,129 @@ int main() {
             /*
             
             int ID(0),IDCounter(0);
-            cout << "Please enter your ID:";
-            cin >> ID;
+                cout << "Please enter your ID:";
+                cin >> ID;
 
-            //id'yi check edip id'nin vektör içinde bulunduğu konumu hafızaya atar
-            vector<int> iVector;
-            vector<int> jVector;
-            vector<int> kVector;
-            for(int i=0; i<hospital.departments.size();i++){
-                for (int j = 0; j < hospital.departments[i].doctors.size(); j++) {
-                    for (int k = 0; k < hospital.departments[i].doctors[j].appointments.size(); k++) {
-                        if(ID==hospital.departments[i].doctors[j].appointments[k].ID){
-                            cout<<IDCounter<<". Day: "<< hospital.departments[i].doctors[j].appointments[k].day << " Time: "<< hospital.departments[i].doctors[j].appointments[k].time<<" Department Name: "<<hospital.departments[i].name<<" Doctor Name:"<<hospital.departments[i].doctors[j].getName()<<endl;
-                            iVector.push_back(i);
-                            jVector.push_back(j);
-                            kVector.push_back(k);
-                            IDCounter++;
+                //id'yi check edip id'nin vektör içinde bulunduğu konumu hafızaya atar
+                vector<int> iVector;
+                vector<int> jVector;
+                vector<int> kVector;
+                for(int i=0; i<hospital.departments.size();i++){
+                    for (int j = 0; j < hospital.departments[i].doctors.size(); j++) {
+                        for (int k = 0; k < hospital.departments[i].doctors[j].appointments.size(); k++) {
+                            if(ID==hospital.departments[i].doctors[j].appointments[k].ID){
+                                if(IDCounter!=0) {
+                                    cout << IDCounter << ". Day: "
+                                         << hospital.departments[i].doctors[j].appointments[k].day << " Time: "
+                                         << hospital.departments[i].doctors[j].appointments[k].time
+                                         << " Department Name: " << hospital.departments[i].name << " Doctor Name:"
+                                         << hospital.departments[i].doctors[j].getName() << endl;
+                                }
+                                iVector.push_back(i);
+                                jVector.push_back(j);
+                                kVector.push_back(k);
+                                IDCounter++;
+                            }
                         }
                     }
                 }
-            }
-            //id bulunamazsa ana menüye atar, bulunursa ve sadece 1 id varsa direkt seçeneklere geçer, birden çok id varsa idleri sıralar ve seçtirir sonra seçeneklere geçer
-            if(IDCounter==0){
-                cout<<"No matching ID"<<endl;
-            }
-            else{
-                switch (IDCounter) {
-                    case 1: {
-                        int fchoice(0);
-                        while(1) {
-                            cout << "1-Change" << endl;
-                            cout << "2-Cancel" << endl;
-                            cout << "3-Back" << endl;
-                            cin >> fchoice;
-                            switch (fchoice) {
-                                case 1: {
+                //id bulunamazsa ana menüye atar, bulunursa ve sadece 1 id varsa direkt seçeneklere geçer, birden çok id varsa idleri sıralar ve seçtirir sonra seçeneklere geçer
+                if(IDCounter==0){
+                    cout<<"No matching ID"<<endl;
+                }
+                else{
+                    int VectorError=IDCounter;
+                    switch (IDCounter) {
+                        case 1: {
+                            int fchoice(0);
+                            cout <<"Day: "
+                                 << hospital.departments[iVector[0]].doctors[jVector[0]].appointments[kVector[0]].day << " Time: "
+                                 << hospital.departments[iVector[0]].doctors[jVector[0]].appointments[kVector[0]].time
+                                 << " Department Name: " << hospital.departments[iVector[0]].name << " Doctor Name:"
+                                 << hospital.departments[iVector[0]].doctors[jVector[0]].getName() << endl;
+                            while(1) {
+                                cout << "1-Change" << endl;
+                                cout << "2-Cancel" << endl;
+                                cout << "3-Back" << endl;
+                                cin >> fchoice;
+                                switch (fchoice) {
+                                    case 1: {
 
-                                    break;
+                                        break;
+                                    }
+                                    case 2: {
+                                        if (kVector[0] < hospital.departments[iVector[0]].doctors[jVector[0]].appointments.size()) {
+                                            hospital.departments[iVector[0]].doctors[jVector[0]].appointments.erase(
+                                                    hospital.departments[iVector[0]].doctors[jVector[0]].appointments.begin() + kVector[0]);
+                                            cout<<"Your appointment record has been deleted"<<endl;
+                                        }else cout<<"vector error"<<endl;
+                                        break;
+                                    }
+                                    case 3: {
+                                        cout << "Exiting..." << endl;
+                                        break;
+                                    }
+                                    default: {
+                                        cout << "Error wrong input(1-3)" << endl;
+                                        break;
+                                    }
                                 }
-                                case 2: {
-                                    if (kVector[IDCounter-1] < hospital.departments[iVector[IDCounter-1]].doctors[jVector[IDCounter-1]].appointments.size()) {
-                                        hospital.departments[iVector[IDCounter-1]].doctors[jVector[IDCounter-1]].appointments.erase(
-                                                hospital.departments[iVector[IDCounter-1]].doctors[jVector[IDCounter-1]].appointments.begin() + kVector[IDCounter-1]);
-                                    }else cout<<"IDCounter vektörden büyük olamaz büyük hata var"<<endl;
-                                    cout<<"Your appointment record has been deleted"<<endl;
-                                    break;
-                                }
-                                case 3: {
-                                    cout << "Exiting..." << endl;
-                                    break;
-                                }
-                                default: {
-                                    cout << "Error wrong input(1-3)" << endl;
-                                    break;
-                                }
-                            }
+                                break;
+                            };
                             break;
-                        };
-                        break;
-                    }
-                    default: {
-                        cout<<"More than one matching appointment found, please select which one you would like to make a transaction with"<<endl<<"Your choice:";
-                        int idchoice=0;
-                        cin>>idchoice;
-                        int fchoice(0);
-                        do {
-                            cout << "1-Change" << endl;
-                            cout << "2-Cancel" << endl;
-                            cout << "3-Back" << endl;
-                            cin >> fchoice;
-                            switch (fchoice) {
-                                case 1: {
-                                //buralar hep dutluktu
-                                    break;
-                                }
-                                //vektörü siler ve ana menüye atar
-                                case 2: {
-                                    if (kVector[idchoice] < hospital.departments[iVector[idchoice]].doctors[jVector[idchoice]].appointments.size()) {
-                                        hospital.departments[iVector[idchoice]].doctors[jVector[idchoice]].appointments.erase(
-                                                hospital.departments[iVector[idchoice]].doctors[jVector[idchoice]].appointments.begin() + kVector[idchoice]);
-                                    }else cout<<"idchoice vektörden büyük olamaz büyük hata var xdd"<<endl;
-                                    cout<<"Your appointment record has been deleted"<<endl;
-                                    break;
-                                }
-                                case 3: {
-                                    //ana menüye atar
-                                    cout << "Exiting..." << endl;
-                                    break;
-                                }
-                                default: {
-                                    cout << "Error wrong input(1-3)" << endl;
-                                    break;
-                                }
+                        }
+                        default: {
+                            cout<< IDCounter<<". Day: "
+                                 << hospital.departments[iVector[0]].doctors[jVector[0]].appointments[kVector[0]].day << " Time: "
+                                 << hospital.departments[iVector[0]].doctors[jVector[0]].appointments[kVector[0]].time
+                                 << " Department Name: " << hospital.departments[iVector[0]].name << " Doctor Name:"
+                                 << hospital.departments[iVector[0]].doctors[jVector[0]].getName() << endl;
+                            cout<<"More than one matching appointment found, please select which one you would like to make a transaction with"<<endl<<"Your choice:";
+                            int idchoice=0;
+                            cin>>idchoice;
+                            if(idchoice>VectorError--||idchoice<=0){
+                                //kullanıcı IDCounter'dan büyük ya da 0 küçük değer girerse var olmayan bir vektörü seçmiş olur bu da hata verir bu yüzden ana menüye atıyoruz
+                                //0 seçerse hata vermez ama seçim ekranında gözükmeyen bir vektörü seçmiş olur o yüzden <=0
+                                break;
                             }
+                            if(idchoice==IDCounter){
+                                idchoice=0;
+                            }
+                            int fchoice(0);
+                            do {
+                                cout << "1-Change" << endl;
+                                cout << "2-Cancel" << endl;
+                                cout << "3-Back" << endl;
+                                cin >> fchoice;
+                                switch (fchoice) {
+                                    case 1: {
+                                        //buralar hep dutluktu
+                                        break;
+                                    }
+                                        //vektörü siler ve ana menüye atar
+                                    case 2: {
+                                        if (kVector[idchoice] < hospital.departments[iVector[idchoice]].doctors[jVector[idchoice]].appointments.size()) {
+                                            hospital.departments[iVector[idchoice]].doctors[jVector[idchoice]].appointments.erase(
+                                                    hospital.departments[iVector[idchoice]].doctors[jVector[idchoice]].appointments.begin() + kVector[idchoice]);
+                                            cout<<"Your appointment record has been deleted"<<endl;
+                                        }else cout<<"vector error"<<endl;
+                                        break;
+                                    }
+                                    case 3: {
+                                        //ana menüye atar
+                                        cout << "Exiting..." << endl;
+                                        break;
+                                    }
+                                    default: {
+                                        cout << "Error wrong input(1-3)" << endl;
+                                        break;
+                                    }
+                                }
                             } while (fchoice != 3&&fchoice != 2);
-                        break;
+                            break;
+                        }
                     }
                 }
-            }
             */
             // Department classinin Appointment vectorundeki tum uyelere bakip idsi eslesince, Day hour department ismi doktorismi yazdiktan sonra 1-degistir 2-iptal et 3-geri menuye gel
             // 1- degistir icin Appointment vektorundeki bilgileri degistir
