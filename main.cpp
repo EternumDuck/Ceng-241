@@ -42,9 +42,9 @@ int main() {
             int ID;
             int prefdepartment;
             int time;
-            int timevalue, datevalue;
+            int timevalue{-1}, datevalue{-1};
             int prefdoc;
-            int counter1{0}, counter{0};
+            int tryagain{0}, counter{0};
 
             cout << "Please enter your ID, name" << endl;
             cin >> ID >> name;
@@ -56,57 +56,47 @@ int main() {
             hospital.departments[prefdepartment].showDoctors();
             cin >> prefdoc;
 
-            cout << "Please enter your desired date and time" << endl;
             for (int day = 0; day < 7; ++day) {
                 cout << setw(10) << " " << dayNames[day];
             }
             for(int hours = 0; hours < 6; ++hours){
                 cout << setw(10);
                 for (int day = 0; day < 7; ++day) {
-                    if(!hospital.departments[prefdepartment].doctors[prefdoc].schedule[day][hours]){ // Hospital veya Department classina bunun isBusy fonksiyonunu yaz
+                    if(!hospital.departments[prefdepartment].doctors[prefdoc].schedule[day][hours]){
                         cout << hours + 12 << ":00" << setw(14);
                     }
                     else{
-                        cout << "Busy" << setw(16); // Duzgun calismiyor duzeltilmesi lazim
+                        cout << "  Busy" << setw(14); // Duzgun calismiyor duzeltilmesi lazim
                     }
                 }
                 cout << endl;
             }
-            while(((datevalue == 9 || counter1==0)) ||  counter ==0) {
-        cin >> date >> time;
-        for (int i = 0; i < 7; i++) {
-            if (date == dayNames[i]) {
-                datevalue = i;
+            cout << "Please enter your desired date and time" << endl;
+            cin >> date >> time;
+            while(!tryagain){
+            for(int i = 0; i < 7; ++i){ // Assign the string to an int value
+                if(date == dayNames[i]){
+                    datevalue = i;
+                }
             }
-        }
-        if(datevalue == 9) {
-            cout << "pls enter a valid day" << endl;
-            counter1=0;
-        }
 
-        if (time>11 && time<18){
-            timevalue = time-12;
-            counter1=counter1 +1;
-        }
-        else{
-            cout<<"pls enter a valid time"<<endl;
-            datevalue = 9;
-        }
-        if((datevalue>0 && datevalue<7) && (timevalue >=0 && timevalue<6) ){
-            if (hospital.departments[prefdepartment].doctors[prefdoc].schedule[datevalue][timevalue] == 0){
-                counter=counter+1;
-                cout << "Please write your symptoms" << endl;
-                cin >> complaints;
-                hospital.departments[prefdepartment].doctors[prefdoc].appointments.push_back(Appointment(ID,datevalue,timevalue,complaints,hospital.departments[prefdepartment].getName(),hospital.departments[prefdepartment].doctors[prefdoc].getName()));
-                hospital.departments[prefdepartment].doctors[prefdoc].schedule[datevalue][timevalue]=true;
+            if(!(datevalue == -1 || (time < 12 || time > 17)) ){ // If the date is not found in the array
+                if(!hospital.departments[prefdepartment].doctors[prefdoc].schedule[datevalue][time - 12]){ // If the time is not busy
+                    hospital.departments[prefdepartment].doctors[prefdoc].schedule[datevalue][time - 12] = true; // Set the time to busy
+                    hospital.departments[prefdepartment].doctors[prefdoc].appointments.push_back(Appointment(ID, datevalue, time - 12, complaints, hospital.departments[prefdepartment].getName(), hospital.departments[prefdepartment].doctors[prefdoc].getName()));
+                    cout << "Appointment made" << endl;
+                    tryagain = 1;
+                }
+                else{
+                    cout << "Time is busy, please select another time" << endl;
+                    cin >> date >> time;
+                }
             }
             else{
-                cout<<"dolu kardes"<<endl;
+                cout << "Wrong date or time" << endl;
+                break;
             }
-        }
-    }
-            // make appointment class and change schedule to true
-
+            }
 
             break;}
         case 2:
