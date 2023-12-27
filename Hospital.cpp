@@ -10,6 +10,7 @@ Hospital::Hospital(string name):name(name) {
 }
 
 Hospital::~Hospital() {
+    saveDepartments();
 }
 
 string Hospital::getName() {
@@ -35,18 +36,7 @@ void Hospital::loadDepartments(){
 }
 
 void Hospital::addDepartment(string depname,int rooms) {
-    fstream departmentFile;
-    departmentFile.open("Departments.txt",ios::app);
-    if (departmentFile.is_open()) {
-        departmentFile << depname << " " << rooms << endl;
-       cout << "Department " << depname << " added" << endl;
-    } else {
-        cerr << "error opening file" << endl;
-    }
-    cout << "debug : Loaded departments" << endl;
-    departmentFile.close();
-
-
+        departments.push_back(Department(std::move(depname),rooms));
 }
 
 void Hospital::showHospital() {
@@ -60,4 +50,18 @@ void Hospital::showHospital() {
     i++;
     }
 
+}
+
+void Hospital::saveDepartments() {
+    fstream departmentFile;
+    departmentFile.open("Departments.txt",ios::out);
+    if (departmentFile.is_open()) {
+        for (auto Department:departments) {
+            departmentFile << Department.getName() << " " << Department.getRooms() << endl;
+        }
+    } else {
+        cerr << "error opening file" << endl;
+    }
+    cout << "debug : Saved departments" << endl;
+    departmentFile.close();
 }

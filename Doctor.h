@@ -19,10 +19,9 @@ public:
     }
     void loadAppointments();
     void viewSchedule();
-    void diagnosePatient();
-    void prescribeMedicine();
     void viewPatients();
+    string getDepartment();
 };
 
 
-#endif //CENG241_DOCTOR_H
+#endif

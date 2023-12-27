@@ -48,3 +48,7 @@ void Doctor::viewPatients() {
     }
 
 }
+
+string Doctor::getDepartment() {
+    return this->department;
+}

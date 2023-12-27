@@ -28,10 +28,12 @@ int main() {
 
     //write 2 nested for each loops
 
-    while(1){
+    while(choice!=5){
     cout << "1 - Make an appointment" << std::endl;
     cout << "2 - Check or change your appointment" << std::endl;
     cout << "3 - Login (Staff only) " << std::endl;
+    cout << "4 - Login (Manager only) " << std::endl;
+    cout << "5 - Exit" << std::endl;
     cin >> choice;
 
     switch (choice) {
@@ -230,7 +232,6 @@ int main() {
             //serhat
             // Doktor icin 1- Departman schedule gorme 2- Departmanindaki Patientlerin infolarini gorme
             // 3- Departmandaki patientler icin secip Patient.treatment icine doktorun yaptigi seyi koyucaz
-            // 4- Aynisini yapip bu sefer eczane recetesini yazicaz
             // 5- Patientleri silme hakki kendi departman icindeki patientleri taburcu edebilme.
 
             //write a nested for each loop to check all departments doctors and nurses
@@ -255,11 +256,11 @@ int main() {
                                     cout << "Please enter the patient ID" << endl;
                                     int patientID;
                                     cin >> patientID;
-                                    for (auto& patient : Department.patients){
+                                    for (auto& patient : Department.patients){ // Search the patients in the department
                                         if(patient.getID()==patientID){
                                             string diagnosis;
                                             cout<<"Please enter the diagnosis of "<<patient.getName()<<":"<<endl;
-                                            cin.ignore();
+                                            cin.ignore(); // clear buffer for getline
                                             getline(cin, diagnosis);
                                             patient.setTreatment(diagnosis);
                                         }
@@ -271,8 +272,17 @@ int main() {
                                     cout << "Please enter the patient ID" << endl;
                                     int patientID2;
                                     cin >> patientID2;
-                                    for (auto& patient : Department.patients){
+                                    for (auto& patient : Department.patients){ // Search the patients in the department ( that our doc belongs to )
+                                        int appointmentDay;
+                                        int appointmentTime;
                                         if(patient.getID()==patientID2){
+                                            for(auto& appointment : doctor.appointments){ // Search the appointments of the doctor for the patient that needs to be discharged
+                                                if(appointment.getID()==patientID2){
+                                                    appointmentDay = appointment.getDay();
+                                                    appointmentTime = appointment.getTime();
+                                                }
+                                            }
+                                            doctor.schedule[appointmentDay][appointmentTime] = false; // Set the schedule of the doctor to false
                                             patient.discharge();
                                             doctor.appointments.erase(doctor.appointments.begin()+patientID2); // iterator points to the beggining then adds the lkeft side as an offset and deletes that
                                         }
@@ -286,23 +296,150 @@ int main() {
                         }
                     }
                     }
-                    for (auto& nurses : Department.nurses) {
+                    int choice{0};
+                    for (auto& nurses : Department.nurses) { // Search the nurses in the NurseCare department
                         if (nurses.getID() == staffID && nurses.getPassword() == password) {
-                            cout << "Welcome nurse " << nurses.getName() << endl; // Sucessful login for doctor class
-
+                            cout << "Welcome nurse " << nurses.getName() << endl;
+                            while(choice!=3){
+                            cout << "1 - View patients" << endl;
+                            cout << "2 - Select Patient" << endl;
+                            cout << "3 - Exit" << endl;
+                            cin >> choice;
+                            switch (choice) {
+                                case 1:
+                                    cout << "hi" << endl;
+                                    break;
+                                case 2:
+                                    cout << "Please enter the patient ID" << endl;
+                                    int patientID;
+                                    cin >> patientID;
+                                    for (auto& patient : Department.patients){ // Search the patients in the department
+                                        if(patient.getID()==patientID){
+                                            int setchoice;
+                                            cout << "1 - Set blood sugar" << endl;
+                                            cout << "2 - Set weight" << endl;
+                                            cout << "3 - Set height" << endl;
+                                            cin >> setchoice;
+                                            switch (setchoice) {
+                                                case 1:
+                                                    cout << "Please enter the blood sugar" << endl;
+                                                    double bloodSugar;
+                                                    cin >> bloodSugar;
+                                                    nurses.setPatientBloodSugar(patient, bloodSugar);
+                                                    cout << "Blood sugar set to " << patient.getBloodSugar() << endl;
+                                                    break;
+                                                case 2:
+                                                    cout << "Please enter the weight" << endl;
+                                                    double weight;
+                                                    cin >> weight;
+                                                    nurses.setPatientWeight(patient, weight);
+                                                    cout << "Weight set to " << patient.getWeight() << endl;
+                                                    break;
+                                                case 3:
+                                                    cout << "Please enter the height" << endl;
+                                                    double height;
+                                                    cin >> height;
+                                                    nurses.setPatientHeight(patient, height);
+                                                    cout << "Height set to " << patient.getHeight() << endl;
+                                                    break;
+                                                case 4:
+                                                {
+                                                    cout << "Please enter the blood type" << endl;
+                                                    string bloodType;
+                                                    cin >> bloodType;
+                                                    nurses.setPatientBloodType(patient, bloodType);
+                                                    cout << "Blood type set to " << patient.getBloodType() << endl;
+                                                    break;
+                                                }
+                                                default:
+                                                    std::cout << "Error wrong input" << std::endl;
+                                            }
+                                        }
+                                        else
+                                            cout << "Patient not found" << endl;
+                                    }
+                                    break;
+                                case 3:
+                                    cout << "Exiting..." << endl;
+                                    choice = 3;
+                                    break;
+                                default:
+                                    std::cout << "Error wrong input" << std::endl;
+                            }
                         }
-                    }
-
+                    }}
                 }
 
             break;
         case 4:
             // Staff menejerler girisi yapabiliriz
+            cout << "Please enter your ID and password" << endl;
+            int staffID2;
+            int password2;
+            cin >>  staffID2 >> password2;
+            if(staffID2 == 1 && password2 == 1){
+                cout << "Welcome manager" << endl;
+                int choice{0};
+                while(choice!=4){
+                cout << "1 - Add department" << endl;
+                cout << "2 - Add doctor" << endl;
+                cout << "3 - Add nurse" << endl;
+                cout << "4 - Exit" << endl;
+                cin >> choice;
+                    string departmentName;
+                    string doctorName;
+                    string doctorDepartment;
+                    string nurseName;
+
+                    switch (choice) {
+                    case 1:
+                        cout << "Please enter the department name and number of rooms" << endl;
+                        int numberOfRooms;
+                        cin >> departmentName >> numberOfRooms;
+                        hospital.addDepartment(departmentName, numberOfRooms);
+                        break;
+                    case 2:
+                        cout << "Please enter the doctor name, ID, password and department" << endl;
+                        int doctorID;
+                        int doctorPassword;
+                        cin >> doctorName >> doctorID >> doctorPassword >> doctorDepartment;
+                        for (auto& department:hospital.departments) {
+                            if(department.getName() == doctorDepartment){
+                                department.hireDoctor(Doctor(doctorName, doctorID, doctorPassword, doctorDepartment));
+                            }
+                        }
+                        break;
+                    case 3:
+                        cout << "Please enter the nurse name, ID and password" << endl;
+                        int nurseID;
+                        int nursePassword;
+                        cin >> nurseName >> nurseID >> nursePassword;
+                            for (auto& department:hospital.departments) {
+                                if(department.getName() == "NurseCare"){
+                                    department.hireNurse(Nurse(nurseName, nurseID, nursePassword, "NurseCare"));
+                                }
+                            };
+                        break;
+                    case 4:
+                        cout << "Exiting..." << endl;
+                        break;
+                    default:
+                        std::cout << "Error wrong input" << std::endl;
+                }
+            }
+            }
+            else
+                cout << "Wrong ID or password" << endl;
+
             // Yeni nurse doktor eklemek icin
             // Yeni departman eklemek icin
             // Ayrica Patientlerin treatmentlerine gore ucretlerini burdan belirleyebiliriz.
 
             break;
+        case 5:
+            cout << "Exiting..." << endl;
+            choice = 5;
+            return 0;
 
         default:
             std::cout << "Error wrong input" << std::endl;

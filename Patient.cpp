@@ -9,11 +9,11 @@ void Patient::setAge(int age) {
     this->age = age;
 }
 
-void Patient::setWeight(float weight) {
+void Patient::setWeight(double weight) {
     this->weight = weight;
 }
 
-void Patient::setHeight(float height) {
+void Patient::setHeight(double height) {
     this->height = height;
 }
 
@@ -21,11 +21,11 @@ void Patient::setBloodType(const std::string& bloodtype) {
     this->bloodType = bloodtype;
 }
 
-void Patient::setBloodSugar(float bloodsugar) {
+void Patient::setBloodSugar(double bloodsugar) {
     this->bloodSugar = bloodsugar;
 }
 
-void Patient::setTreatmentCost(float treatmentcost) {
+void Patient::setTreatmentCost(double treatmentcost) {
     this->treatmentCost = treatmentcost;
 }
 
@@ -38,5 +38,7 @@ void Patient::setTreatment(string treatmentval) {
 }
 
 void Patient::discharge() {
-
+    std::cout << "Patient " << this->name << " is discharged." << std::endl;
+    this->~Patient();
 }
+

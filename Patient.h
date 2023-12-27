@@ -15,7 +15,6 @@ class Patient {
     int ID,age;
     double weight,height;
     double bloodSugar,treatmentCost;
-    vector <string> prescription;
 public:
     Patient(string name,int ID,int age,double weight,double height,string bloodType,double bloodSugar,double treatmentCost,string department)
     : name(name),ID(ID),age(age),weight(weight),height(height),bloodType(bloodType),bloodSugar(bloodSugar),treatmentCost(treatmentCost),department(department){
@@ -24,21 +23,26 @@ public:
     Patient(){
 
     }
-    // destructor
-    ~Patient(){
-        std::cout << "Patient " << this->name << " is discharged." << std::endl;
-    }
 
     const std::string& getName() const;
     int getID() const;
     void setTreatment(string treatment);
     void discharge();
+
     void setAge(int age);
-    void setWeight(float weight);
-    void setHeight(float height);
+    void setWeight(double weight);
+    void setHeight(double height);
     void setBloodType(const std::string& bloodType);
-    void setBloodSugar(float bloodSugar);
-    void setTreatmentCost(float treatmentCost);
+    void setBloodSugar(double bloodSugar);
+    void setTreatmentCost(double treatmentCost);
+
+    double getBloodSugar(){return bloodSugar;}
+    string getBloodType(){return bloodType;}
+    double getWeight(){return weight;}
+    double getHeight(){return height;}
+    int getAge(){return age;}
+    double getTreatmentCost(){return treatmentCost;}
+    string getDepartment(){return department;}
 
 };
 

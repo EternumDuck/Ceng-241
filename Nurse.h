@@ -12,10 +12,16 @@ class Nurse : public Staff {
 public:
     Nurse(const std::string& name, int ID, int password) :
             Staff(name, ID, password) {};
-    void setPatientBloodSugar(Patient);
-    void setPatientWeight(Patient);
-    void setPatientHeight(Patient);
+
+
     //add more
+    void setPatientBloodSugar(Patient &patient, double bloodSugar);
+
+    void setPatientBloodType(Patient &patient, string bloodType);
+
+    void setPatientWeight(Patient &patient, double weight);
+
+    void setPatientHeight(Patient &patient, double height);
 };
 
 
