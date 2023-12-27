@@ -11,6 +11,7 @@ Hospital::Hospital(string name):name(name) {
 
 Hospital::~Hospital() {
     saveDepartments();
+    saveInfo();
 }
 
 string Hospital::getName() {
@@ -63,4 +64,34 @@ void Hospital::saveDepartments() {
     }
     cout << "debug : Saved departments" << endl;
     departmentFile.close();
+}
+
+void Hospital::saveInfo() {
+    // Saving doctors
+    fstream doctorFile;
+    doctorFile.open("Doctors.txt",ios::out);
+    for(Department department:departments){
+        for(Doctor doctor:department.doctors){
+            doctorFile << doctor.getName() << " " << doctor.getID() << " " << doctor.getPassword() << " " << doctor.getDepartment() << endl;
+        }
+    }
+    // Saving Nurses
+    fstream nurseFile;
+    nurseFile.open("Nurses.txt",ios::out);
+    for(Department department:departments){
+        if(department.getName() == "NurseCare"){
+        for(Nurse nurse:department.nurses){
+            nurseFile << nurse.getName() << " " << nurse.getID() << " " << nurse.getPassword() << endl;
+        }
+        }
+    }
+    // Saving Patients
+    fstream patientFile;
+    patientFile.open("Patients.txt",ios::out);
+    for(Department department:departments){
+        for(Patient patient:department.patients){
+            patientFile << patient.getName() << " " << patient.getID() << " " << patient.getAge() << " " << patient.getWeight() << " " << patient.getHeight() << " " << patient.getBloodType() << " " << patient.getBloodSugar() << " " << patient.getTreatmentCost() << " " << patient.getDepartment() << endl;
+        }
+    }
+
 }

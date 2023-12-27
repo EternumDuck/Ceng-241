@@ -15,7 +15,6 @@ using namespace std;
 int main() {
 
     Hospital hospital("Saint Serdar Arslan Hospital");
-   // hospital.addDepartment("KBB",10); // works
 
     int choice;
     string date;
@@ -93,7 +92,7 @@ int main() {
             cout<<"pls enter a valid time"<<endl;
             datevalue = 9;
         }
-        if((datevalue>0 && datevalue<7) || (timevalue >=0 && timevalue<6) ){
+        if((datevalue>0 && datevalue<7) && (timevalue >=0 && timevalue<6) ){
             if (hospital.departments[prefdepartment].doctors[prefdoc].schedule[datevalue][timevalue] == 0){
                 counter=counter+1;
                 cout << "Please write your symptoms" << endl;

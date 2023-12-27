@@ -56,34 +56,6 @@ void Department::loadPeople() {
     }
     cout << "debug : Loaded departments" << endl;
 }
-void Department::saveDepartment() {
-    fstream doctorFile;
-    doctorFile.open("Doctors.txt",ios::out | ios::app);
-
-    if (doctorFile.is_open()) {
-        for (auto Doctor:doctors) {
-            doctorFile << Doctor.getName() << " " << Doctor.getID() << " " << Doctor.getPassword() << " " << Doctor.getDepartment() << endl;
-        }
-    }
-
-    fstream nurseFile;
-    nurseFile.open("Nurses.txt",ios::out | ios::app);
-
-    if (nurseFile.is_open()) {
-        for (auto Nurse:nurses) {
-            nurseFile << Nurse.getName() << " " << Nurse.getID() << " " << Nurse.getPassword() << endl;
-        }
-    }
-
-    fstream patientFile;
-    patientFile.open("Patients.txt",ios::out | ios::app);
-
-    if (patientFile.is_open()) {
-        for (auto Patient:patients) {
-            patientFile << Patient.getName() << " " << Patient.getID() << " " << Patient.getAge() << " " << Patient.getWeight() << " " << Patient.getHeight() << " " << Patient.getBloodType() << " " << Patient.getBloodSugar() << " " << Patient.getTreatmentCost() << " " << Patient.getDepartment() << endl;
-        }
-    }
-}
 
 void Department::showDepartment() {
     cout << this->name << "  ";

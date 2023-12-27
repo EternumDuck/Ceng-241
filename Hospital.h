@@ -26,6 +26,7 @@ public:
     void loadDepartments();
 
     void saveDepartments();
+    void saveInfo();
 };
 
 

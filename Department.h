@@ -25,14 +25,12 @@ public:
     vector <Doctor> doctors;// move back to private
     Department(string name, int rooms);
     ~Department(){
-        saveDepartment();
-    }
+        }
     void hireDoctor(Doctor doctor);
     void hireNurse(Nurse nurse);
     void loadPeople();
     void showDepartment();
     void showDoctors();
-    void saveDepartment();
     void loadAppointments();
     string getName();
     int getRooms();
