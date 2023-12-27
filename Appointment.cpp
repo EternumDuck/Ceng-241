@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Appointment.h"
 
+
 Appointment::Appointment(int ID,int day,int time,string complaint,string department,string preferred)
 :ID(ID),day(day),time(time),complaint(complaint),department(department),preferred(preferred) {
 
@@ -11,11 +12,14 @@ Appointment::Appointment() {
 }
 
 void Appointment::showAppointment() {
-    cout << "ID: " << ID << endl;
-    cout << "Day: " << day << endl;
-    cout << "Time: " << time << endl;
-    cout << "Complaint: " << complaint << endl;
+    string dayNames[] = {"Monday", "Tuesday", "Wednesday",
+                         "Thursday", "Friday", "Saturday",
+                         "Sunday"};
 
+    cout << "ID: " << ID << endl;
+    cout << "Day: " << dayNames[day] << endl;
+    cout << "Time: " << time + 12 << ":00" << endl;
+    cout << "Complaint: " << complaint << endl;
 }
 
 void Appointment::cancel() {

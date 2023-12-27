@@ -86,7 +86,7 @@ void Department::saveDepartment() {
 }
 
 void Department::showDepartment() {
-    cout << this->name << endl;
+    cout << this->name << "  ";
 
 }
 

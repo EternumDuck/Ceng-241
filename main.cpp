@@ -18,6 +18,7 @@ int main() {
    // hospital.addDepartment("KBB",10); // works
 
     int choice;
+    string date;
     string name;
     string complaints;
     string dayNames[] = {"Monday", "Tuesday", "Wednesday",
@@ -37,12 +38,14 @@ int main() {
     cin >> choice;
 
     switch (choice) {
-        case 1:
+        case 1:{
             //
             int ID;
             int prefdepartment;
-            int date,time;
+            int time;
+            int timevalue, datevalue;
             int prefdoc;
+            int counter1{0}, counter{0};
 
             cout << "Please enter your ID, name" << endl;
             cin >> ID >> name;
@@ -70,18 +73,43 @@ int main() {
                 }
                 cout << endl;
             }
-           cin >> date >> time;
-            // check if empty
-            //
-            //
-            // if empty
-            cout << "Please write your symptoms" << endl;
-            cin >> complaints;
-            //
-            // make appoiuntment class and change schedule to true
+            while(((datevalue == 9 || counter1==0)) ||  counter ==0) {
+        cin >> date >> time;
+        for (int i = 0; i < 7; i++) {
+            if (date == dayNames[i]) {
+                datevalue = i;
+            }
+        }
+        if(datevalue == 9) {
+            cout << "pls enter a valid day" << endl;
+            counter1=0;
+        }
+
+        if (time>11 && time<18){
+            timevalue = time-12;
+            counter1=counter1 +1;
+        }
+        else{
+            cout<<"pls enter a valid time"<<endl;
+            datevalue = 9;
+        }
+        if((datevalue>0 && datevalue<7) || (timevalue >=0 && timevalue<6) ){
+            if (hospital.departments[prefdepartment].doctors[prefdoc].schedule[datevalue][timevalue] == 0){
+                counter=counter+1;
+                cout << "Please write your symptoms" << endl;
+                cin >> complaints;
+                hospital.departments[prefdepartment].doctors[prefdoc].appointments.push_back(Appointment(ID,datevalue,timevalue,complaints,hospital.departments[prefdepartment].getName(),hospital.departments[prefdepartment].doctors[prefdoc].getName()));
+                hospital.departments[prefdepartment].doctors[prefdoc].schedule[datevalue][timevalue]=true;
+            }
+            else{
+                cout<<"dolu kardes"<<endl;
+            }
+        }
+    }
+            // make appointment class and change schedule to true
 
 
-            break;
+            break;}
         case 2:
             // furkan
             {
@@ -405,7 +433,7 @@ int main() {
                         cin >> doctorName >> doctorID >> doctorPassword >> doctorDepartment;
                         for (auto& department:hospital.departments) {
                             if(department.getName() == doctorDepartment){
-                                department.hireDoctor(Doctor(doctorName, doctorID, doctorPassword, doctorDepartment));
+                                department.hireDoctor(Doctor(doctorName, doctorID, doctorPassword, doctorDepartment)); // works
                             }
                         }
                         break;
@@ -416,7 +444,7 @@ int main() {
                         cin >> nurseName >> nurseID >> nursePassword;
                             for (auto& department:hospital.departments) {
                                 if(department.getName() == "NurseCare"){
-                                    department.hireNurse(Nurse(nurseName, nurseID, nursePassword, "NurseCare"));
+                                    department.hireNurse(Nurse(nurseName, nurseID, nursePassword)); // fix
                                 }
                             };
                         break;
@@ -431,8 +459,6 @@ int main() {
             else
                 cout << "Wrong ID or password" << endl;
 
-            // Yeni nurse doktor eklemek icin
-            // Yeni departman eklemek icin
             // Ayrica Patientlerin treatmentlerine gore ucretlerini burdan belirleyebiliriz.
 
             break;
@@ -443,18 +469,7 @@ int main() {
 
         default:
             std::cout << "Error wrong input" << std::endl;
-    }}
-
-
-
-
-
-
-
-
-
-
-
-
+    }
+    }
     return 0;
 }

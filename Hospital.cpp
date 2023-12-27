@@ -46,7 +46,6 @@ void Hospital::showHospital() {
     for (auto Department:departments) {
     cout << i << ". ";
     Department.showDepartment();
-    cout << endl;
     i++;
     }
 
