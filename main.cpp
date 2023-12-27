@@ -46,8 +46,7 @@ int main() {
             int prefdoc;
             int tryagain{0}, counter{0};
 
-            cout << "Please enter your ID, name" << endl;
-            cin >> ID >> name;
+
             cout << "Please enter your desired department" << endl;
             hospital.showHospital();
             cin >> prefdepartment;
@@ -66,7 +65,7 @@ int main() {
                         cout << hours + 12 << ":00" << setw(14);
                     }
                     else{
-                        cout << "  Busy" << setw(14); // Duzgun calismiyor duzeltilmesi lazim
+                        cout << "Busy" << setw(14); // Duzgun calismiyor duzeltilmesi lazim
                     }
                 }
                 cout << endl;
@@ -81,11 +80,15 @@ int main() {
             }
 
             if(!(datevalue == -1 || (time < 12 || time > 17)) ){ // If the date is not found in the array
-                if(!hospital.departments[prefdepartment].doctors[prefdoc].schedule[datevalue][time - 12]){ // If the time is not busy
-                    hospital.departments[prefdepartment].doctors[prefdoc].schedule[datevalue][time - 12] = true; // Set the time to busy
+                if(!hospital.departments[prefdepartment].doctors[prefdoc].schedule[datevalue][time - 12]){ // check if time is not busy
+                    hospital.departments[prefdepartment].doctors[prefdoc].schedule[datevalue][time - 12] = true; // Set schedule to busy
+                    cout << "Please enter your ID, name" << endl;
+                    cin >> ID >> name;
                     hospital.departments[prefdepartment].doctors[prefdoc].appointments.push_back(Appointment(ID, datevalue, time - 12, complaints, hospital.departments[prefdepartment].getName(), hospital.departments[prefdepartment].doctors[prefdoc].getName()));
-                    cout << "Appointment made" << endl;
+                 // Creating A patient class does not work   hospital.departments[prefdepartment].patients.push_back(Patient(name,ID, hospital.departments[prefdepartment].getName()));
                     tryagain = 1;
+                    cout << "Your appointment has been made" << name << endl;
+
                 }
                 else{
                     cout << "Time is busy, please select another time" << endl;
@@ -255,12 +258,13 @@ int main() {
                 for (auto& Department : hospital.departments) {
                     for (auto& doctor : Department.doctors) {
                         if (doctor.getID() == staffID && doctor.getPassword() == password) {
-                            while(1){
+                            while(choice!=5){
                             cout << "Welcome Dr." << doctor.getName() << endl; // Sucessful login for doctor class
                             cout << "1 - View schedule" << endl;
                             cout << "2 - View patients" << endl;
                             cout << "3 - Diagnose patient" << endl;
                             cout << "4 - Discharge patient" << endl;
+                            cout << "5 - Exit" << endl;
                             cin >> choice;
                             switch (choice) {
                                 case 1:
@@ -306,6 +310,10 @@ int main() {
                                         else
                                             cout << "Patient not found" << endl;
                                     }
+                                    break;
+                                case 5:
+                                    cout << "Exiting..." << endl;
+                                    choice = 5;
                                     break;
                                 default:
                                     std::cout << "Error wrong input" << std::endl;
