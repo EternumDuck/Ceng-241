@@ -14,26 +14,26 @@ class Nurse;
 class Patient;
 
 class Department {
-public:
-    vector <Nurse> nurses;
-    vector <Patient> patients;
-
 private:
     int rooms;
     string name;
 public:
-    vector <Doctor> doctors;// move back to private
+    vector <Nurse> nurses;
+    vector <Patient> patients;
+    vector <Doctor> doctors;
     Department(string name, int rooms);
-    ~Department(){
-        }
+    ~Department();
     void hireDoctor(Doctor doctor);
     void hireNurse(Nurse nurse);
     void loadPeople();
     void showDepartment();
     void showDoctors();
-    void loadAppointments();
+
     string getName();
     int getRooms();
+
+    void fireDoctor(Doctor &doctor);
+    void fireNurse(Nurse &nurse);
 };
 
 

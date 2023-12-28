@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include <fstream>
 #include <iomanip>
 #include "Patient.h"
 #include "Doctor.h"
@@ -26,8 +25,6 @@ int main() {
 
     cout << "Welcome to "<< hospital.getName() << std::endl;
 
-    //write 2 nested for each loops
-
     while(choice!=5){
     cout << "1 - Make an appointment" << std::endl;
     cout << "2 - Check or change your appointment" << std::endl;
@@ -38,13 +35,13 @@ int main() {
 
     switch (choice) {
         case 1:{
-            //
+
             int ID;
             int prefdepartment;
             int time;
-            int timevalue{-1}, datevalue{-1};
+            int datevalue{-1};
             int prefdoc;
-            int tryagain{0}, counter{0};
+            int tryagain{0};
 
 
             cout << "Please enter your desired department" << endl;
@@ -249,12 +246,8 @@ int main() {
             cout << "Please enter your ID and password" << endl;
 
             cin >>  staffID >> password;
-            //serhat
-            // Doktor icin 1- Departman schedule gorme 2- Departmanindaki Patientlerin infolarini gorme
-            // 3- Departmandaki patientler icin secip Patient.treatment icine doktorun yaptigi seyi koyucaz
-            // 5- Patientleri silme hakki kendi departman icindeki patientleri taburcu edebilme.
 
-            //write a nested for each loop to check all departments doctors and nurses
+            // nested for each loop to check all departments doctors and nurses
                 for (auto& Department : hospital.departments) {
                     for (auto& doctor : Department.doctors) {
                         if (doctor.getID() == staffID && doctor.getPassword() == password) {
@@ -405,11 +398,16 @@ int main() {
             if(staffID2 == 1 && password2 == 1){
                 cout << "Welcome manager" << endl;
                 int choice{0};
-                while(choice!=4){
+                while(choice!=7){
+
                 cout << "1 - Add department" << endl;
                 cout << "2 - Add doctor" << endl;
                 cout << "3 - Add nurse" << endl;
-                cout << "4 - Exit" << endl;
+                cout << "4 - Fire doctor" << endl;
+                cout << "5 - Fire nurse" << endl;
+                cout << "6 - Remove department" << endl;
+                cout << "7 - Exit" << endl;
+
                 cin >> choice;
                     string departmentName;
                     string doctorName;
@@ -445,7 +443,41 @@ int main() {
                                 }
                             };
                         break;
-                    case 4:
+                        case 4:
+                        cout << "Please enter the doctor ID" << endl;
+                        int doctorID2;
+                        cin >> doctorID2;
+                        for (auto& department:hospital.departments) {
+                            for (auto& doctor:department.doctors) {
+                                if(doctor.getID() == doctorID2){
+                                    department.fireDoctor(doctor);
+                                }
+                            }
+                        }
+                        break;
+                        case 5:
+                        cout << "Please enter the nurse ID" << endl;
+                        int nurseID2;
+                        cin >> nurseID2;
+                        for (auto& department:hospital.departments) {
+                            for (auto& nurse:department.nurses) {
+                                if(nurse.getID() == nurseID2){
+                                    department.fireNurse(nurse);
+                                }
+                            }
+                        }
+                        break;
+                        case 6:{ // works but is a dumb way of doing it
+                        cout << "Please enter the department name" << endl;
+                        string departmentName2;
+                        cin >> departmentName2;
+                        for (auto& department:hospital.departments) {
+                            if(department.getName() == departmentName2){
+                                hospital.removeDepartment(department);
+                            }
+                        }}
+
+                    case 7:
                         cout << "Exiting..." << endl;
                         break;
                     default:

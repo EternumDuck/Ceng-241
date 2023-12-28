@@ -93,5 +93,23 @@ void Hospital::saveInfo() {
             patientFile << patient.getName() << " " << patient.getID() << " " << patient.getAge() << " " << patient.getWeight() << " " << patient.getHeight() << " " << patient.getBloodType() << " " << patient.getBloodSugar() << " " << patient.getTreatmentCost() << " " << patient.getDepartment() << endl;
         }
     }
+    // Saving Appointments
+    fstream appointmentFile;
+    appointmentFile.open("Appointments.txt",ios::out);
+    for(Department department:departments){
+        for(Doctor doctor:department.doctors){
+            for(Appointment appointment:doctor.appointments){
+              //  appointmentFile << appointment.getID() << " " << appointment.getDay() << " " << appointment.getTime() << " " << appointment.getComplaint() << " " << appointment.getDepartment() << " " << appointment.getPreferred() << endl;
+            }
+        }
+    }
 
+}
+
+void Hospital::removeDepartment(Department &department) {   // ?
+    for (int i = 0; i < departments.size(); ++i) {
+        if (departments[i].getName() == department.getName()) {
+            departments.erase(departments.begin() + i);
+        }
+    }
 }

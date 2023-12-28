@@ -1,5 +1,4 @@
 ThomYorke 123 66 Cardiology
 Bartu 124 67 Cardiology
-Ligma 125 123 Cardiology
 Neurolog 126 64 Neurology
 Serhat 126 64 Urology

@@ -27,6 +27,8 @@ public:
 
     void saveDepartments();
     void saveInfo();
+
+    void removeDepartment(Department &department);
 };
 
 

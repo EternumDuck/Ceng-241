@@ -88,3 +88,11 @@ int Department::getRooms() {
 void Department::hireNurse(Nurse nurse) {
     this->nurses.push_back(nurse);
 }
+
+void Department::fireDoctor(Doctor &doctor) {
+    this->doctors.erase(doctors.begin()+doctor.getID());
+}
+
+void Department::fireNurse(Nurse &nurse) {
+    this->nurses.erase(nurses.begin()+nurse.getID());
+}
