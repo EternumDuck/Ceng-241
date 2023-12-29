@@ -24,6 +24,9 @@ public:
     int getDay() const;
     int getTime() const;
 
+    string getComplaint();
+    string getDepartment();
+    string getPreferred();
 };
 
 

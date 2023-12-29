@@ -22,7 +22,6 @@ public:
     vector <Patient> patients;
     vector <Doctor> doctors;
     Department(string name, int rooms);
-    ~Department();
     void hireDoctor(Doctor doctor);
     void hireNurse(Nurse nurse);
     void loadPeople();

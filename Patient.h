@@ -19,9 +19,12 @@ public:
     Patient(string name,int ID,int age,double weight,double height,string bloodType,double bloodSugar,double treatmentCost,string department)
     : name(name),ID(ID),age(age),weight(weight),height(height),bloodType(bloodType),bloodSugar(bloodSugar),treatmentCost(treatmentCost),department(department){
     }
-    Patient(string name,int ID,string department)
-            : name(name),ID(ID),age(0),weight(0),height(0),bloodType(0),bloodSugar(0),treatmentCost(0),department(department){
-    }
+   Patient(string name,int ID,string department)
+   :age(0),weight(0),height(0),bloodType("0"),bloodSugar(0),treatmentCost(0){
+        this->name = name;
+        this->ID = ID;
+        this->department = department;
+    };
 
     Patient(){
 

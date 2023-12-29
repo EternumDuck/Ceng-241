@@ -99,7 +99,7 @@ void Hospital::saveInfo() {
     for(Department department:departments){
         for(Doctor doctor:department.doctors){
             for(Appointment appointment:doctor.appointments){
-              //  appointmentFile << appointment.getID() << " " << appointment.getDay() << " " << appointment.getTime() << " " << appointment.getComplaint() << " " << appointment.getDepartment() << " " << appointment.getPreferred() << endl;
+                appointmentFile << appointment.getID() << " " << appointment.getDay() << " " << appointment.getTime() << " " << appointment.getComplaint() << " " << appointment.getDepartment() << " " << appointment.getPreferred() << endl;
             }
         }
     }

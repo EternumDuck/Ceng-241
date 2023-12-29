@@ -37,3 +37,15 @@ int Appointment::getDay() const {
 int Appointment::getTime() const {
     return this->time;
 }
+
+string Appointment::getComplaint() {
+    return this->complaint;
+}
+
+string Appointment::getDepartment() {
+    return this->department;
+}
+
+string Appointment::getPreferred() {
+    return this->preferred;
+}
