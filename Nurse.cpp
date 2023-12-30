@@ -16,3 +16,7 @@ void Nurse::setPatientWeight(Patient& patient, double weight ) {
 void Nurse::setPatientHeight(Patient& patient, double height) {
     patient.setHeight(height);
 }
+
+void Nurse::setPatientAge(Patient &patient, int i) {
+
+}

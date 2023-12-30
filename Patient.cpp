@@ -38,7 +38,19 @@ void Patient::setTreatment(string treatmentval) {
 }
 
 void Patient::discharge() {
-    std::cout << "Patient " << this->name << " is discharged." << std::endl;
+    cout << "Patient " << this->name << " is discharged." << endl;
     this->~Patient();
+}
+
+void Patient::showPatient() {
+    cout << "Patient Name: " << this->name;
+    cout << " ID: " << this->ID << endl;
+    cout << " Age: " << this->age;
+    cout << "  Weight: " << this->weight;
+    cout << "  Height: " << this->height << endl;
+    cout << " Blood Type: " << this->bloodType;
+    cout << "  Blood Sugar: " << this->bloodSugar << endl;
+    cout << " Department: " << this->department << endl;
+    cout << "Patient Treatment: " << this->treatment << endl;
 }
 

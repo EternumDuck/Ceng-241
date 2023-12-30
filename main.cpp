@@ -341,8 +341,19 @@ int main() {
                                 cout << "3 - Exit" << endl;
                                 cin >> choice;
                                 switch (choice) {
-                                    case 1:
-                                        cout << "hi" << endl; // implement this
+                                    case 1: {
+                                        cout << "Which department would you like to view patients from?" << endl;
+                                        string departmentChoice;
+                                        cin >> departmentChoice;
+                                        for (auto &department: hospital.departments) { // For every department
+                                            if (department.getName() == departmentChoice) {
+                                                for (auto &patient: department.patients) {
+                                                    patient.showPatient();
+                                                    cout << endl;
+                                                }
+                                            }
+                                        }
+                                    }
                                         break;
                                     case 2: {
                                         cout << "Please enter the patient ID" << endl;
@@ -397,7 +408,7 @@ int main() {
                                                                 cout << "Please enter the age" << endl;
                                                                 int age;
                                                                 cin >> age;
-                                                                // set age
+                                                                nurses.setPatientAge(patient, age);
                                                                 cout << "Age set to " << patient.getAge() << endl;
                                                                 break;
                                                             case 6:

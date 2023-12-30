@@ -34,6 +34,7 @@ public:
     int getID() const;
     void setTreatment(string treatment);
     void discharge();
+    void showPatient();
 
     void setAge(int age);
     void setWeight(double weight);

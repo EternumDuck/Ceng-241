@@ -22,6 +22,8 @@ public:
     void setPatientWeight(Patient &patient, double weight);
 
     void setPatientHeight(Patient &patient, double height);
+
+    void setPatientAge(Patient &patient, int i);
 };
 
 
