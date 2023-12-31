@@ -41,7 +41,7 @@ void Hospital::addDepartment(string depname,int rooms) {
 }
 
 void Hospital::showHospital() {
-    int i = 0;
+    int i = 1;
     cout << "Showing hospital departments" << endl;
 
     for (auto Department:departments) {

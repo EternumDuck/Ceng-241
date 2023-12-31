@@ -13,7 +13,7 @@ using namespace std;
 
 int main() {
 
-    Hospital hospital("Saint Serdar Arslan Hospital");
+    Hospital hospital("Cankaya Hospital");
 
     int choice;
     string date;
@@ -45,8 +45,9 @@ int main() {
 
 
                 cout << "Please enter your desired department" << endl;
-                hospital.showHospital();
+                hospital.showHospital(); // start it from 1
                 cin >> prefdepartment;
+                prefdepartment--;
 
                 cout << "Please select your preferred doctor" << endl;
                 hospital.departments[prefdepartment].showDoctors();
@@ -66,7 +67,7 @@ int main() {
                     }
                     cout << endl;
                 }
-                cout << "Please enter your desired date and time" << endl;
+                cout << "Please enter your desired date and time (i.e. Monday 14)" << endl;
                 cin >> date >> time;
                 while (!tryagain) {
                     for (int i = 0; i < 7; ++i) { // Assign the string to an int value
@@ -76,15 +77,12 @@ int main() {
                     }
 
                     if (!(datevalue == -1 || (time < 12 || time > 17))) { // If the date is not found in the array
-                        if (!hospital.departments[prefdepartment].doctors[prefdoc].schedule[datevalue][time -
-                                                                                                       12]) { // check if time is not busy
-                            hospital.departments[prefdepartment].doctors[prefdoc].schedule[datevalue][time -
-                                                                                                      12] = true; // Set schedule to busy
+                        if (!hospital.departments[prefdepartment].doctors[prefdoc].schedule[datevalue][time - 12]) { // check if time is not busy
+                            hospital.departments[prefdepartment].doctors[prefdoc].schedule[datevalue][time - 12] = true; // Set schedule to busy
                             cout << "Please enter your ID, name" << endl;
                             cin >> ID >> name;
                             cout << "Please enter your complaints" << endl;
-                            cin.ignore(); // clear buffer for getline
-                            getline(cin, complaints);
+                            cin >> complaints; // switched back to cin because getline was not working with space seperated txt file loading
                             hospital.departments[prefdepartment].doctors[prefdoc].appointments.push_back(
                                     Appointment(ID, datevalue, time - 12, complaints,
                                                 hospital.departments[prefdepartment].getName(),
@@ -167,6 +165,7 @@ int main() {
                                         cout << "Please enter your desired department" << endl;
                                         hospital.showHospital();
                                         cin >> prefdepartment;
+                                        prefdepartment--;
 
                                         cout << "Please select your preferred doctor" << endl;
                                         hospital.departments[prefdepartment].showDoctors();
@@ -187,8 +186,7 @@ int main() {
                                                     hospital.departments[prefdepartment].doctors[prefdoc].schedule[datevalue][time -
                                                                                                                               12] = true;
                                                     cout << "Please enter your complaints" << endl;
-                                                    cin.ignore();
-                                                    getline(cin, complaints);
+                                                    cin >> complaints; //changed from getline
                                                     if (kVector[0] <
                                                         hospital.departments[iVector[0]].doctors[jVector[0]].appointments.size()) {
                                                         hospital.departments[iVector[0]].doctors[jVector[0]].schedule[hospital.departments[iVector[0]].doctors[jVector[0]].appointments[kVector[0]].getDay()][hospital.departments[iVector[0]].doctors[jVector[0]].appointments[kVector[0]].getTime()] = false;
@@ -397,8 +395,7 @@ int main() {
                                                 cin.ignore(); // clear buffer for getline
                                                 getline(cin, diagnosis);
                                                 patient.setTreatment(diagnosis);
-                                            } else
-                                                cout << "Patient not found" << endl;
+                                            }
                                         }
                                         break;
                                     case 4:
