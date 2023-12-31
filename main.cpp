@@ -110,13 +110,7 @@ int main() {
             case 2:
                 // furkan
             {
-                //doctor sınıfındaki "vector <Appointment> appointments;",
-                // department sınıfındaki "string name;",
-                // Appointment sınıfındaki "int ID;", "int day;" ve "int time;"
-                // private olduğu için çalışmıyor bunların ya public olması lazım ya da getter setter fonksiyonları lazım ona göre fonksiyonun güncellenmesi lazım
-                //aşağıdaki döngülerin düzgün çalışması için de ilgili değerlerin atanmış olması lazım.
-                //vektörleri atayan kod 19.satıra gelecek: https://github.com/fc63/atayici/blob/main/debugger.cpp kopyala yapıştır
-                int ID(0), IDCounter(0);
+                int ID(0), IDCounter(0),tryagain(0),datevalue(-1),prefdoc(0),prefdepartment(0),time(0);
                 cout << "Please enter your ID:";
                 cin >> ID;
 
@@ -165,12 +159,66 @@ int main() {
                                 cin >> fchoice;
                                 switch (fchoice) {
                                     case 1: {
+                                        for (int i = 0; i < hospital.departments[iVector[0]].patients.size(); i++) {
+                                            if(ID==hospital.departments[iVector[0]].patients[i].getID()){
+                                                name=hospital.departments[iVector[0]].patients[i].getName();
+                                            }
+                                        }
+                                        cout << "Please enter your desired department" << endl;
+                                        hospital.showHospital();
+                                        cin >> prefdepartment;
 
+                                        cout << "Please select your preferred doctor" << endl;
+                                        hospital.departments[prefdepartment].showDoctors();
+                                        cin >> prefdoc;
+                                        hospital.departments[prefdepartment].doctors[prefdoc].viewSchedule();
+                                        cout << "Please enter your desired date and time" << endl;
+                                        cin >> date >> time;
+                                        while (!tryagain) {
+                                            for (int i = 0; i < 7; ++i) {
+                                                if (date == dayNames[i]) {
+                                                    datevalue = i;
+                                                }
+                                            }
+
+                                            if (!(datevalue == -1 || (time < 12 || time > 17))) {
+                                                if (!hospital.departments[prefdepartment].doctors[prefdoc].schedule[datevalue][time -
+                                                                                                                               12]) {
+                                                    hospital.departments[prefdepartment].doctors[prefdoc].schedule[datevalue][time -
+                                                                                                                              12] = true;
+                                                    cout << "Please enter your complaints" << endl;
+                                                    cin.ignore();
+                                                    getline(cin, complaints);
+                                                    if (kVector[0] <
+                                                        hospital.departments[iVector[0]].doctors[jVector[0]].appointments.size()) {
+                                                        hospital.departments[iVector[0]].doctors[jVector[0]].schedule[hospital.departments[iVector[0]].doctors[jVector[0]].appointments[kVector[0]].getDay()][hospital.departments[iVector[0]].doctors[jVector[0]].appointments[kVector[0]].getTime()] = false;
+                                                        hospital.departments[iVector[0]].doctors[jVector[0]].appointments.erase(
+                                                                hospital.departments[iVector[0]].doctors[jVector[0]].appointments.begin() +
+                                                                kVector[0]);
+                                                    } else cout << "vector error" << endl;
+                                                    hospital.departments[prefdepartment].doctors[prefdoc].appointments.push_back(
+                                                            Appointment(ID, datevalue, time - 12, complaints,
+                                                                        hospital.departments[prefdepartment].getName(),
+                                                                        hospital.departments[prefdepartment].doctors[prefdoc].getName()));
+                                                    string tempname = hospital.departments[prefdepartment].getName();
+                                                    hospital.departments[prefdepartment].patients.push_back(Patient(name, ID, tempname));
+                                                    cout << "Your appointment has been changed " << name << endl;
+                                                    tryagain = 1;
+                                                } else {
+                                                    cout << "Time is busy, please select another time" << endl;
+                                                    cin >> date >> time;
+                                                }
+                                            } else {
+                                                cout << "Wrong date or time" << endl;
+                                                break;
+                                            }
+                                        }
                                         break;
                                     }
                                     case 2: {
                                         if (kVector[0] <
                                             hospital.departments[iVector[0]].doctors[jVector[0]].appointments.size()) {
+                                            hospital.departments[iVector[0]].doctors[jVector[0]].schedule[hospital.departments[iVector[0]].doctors[jVector[0]].appointments[kVector[0]].getDay()][hospital.departments[iVector[0]].doctors[jVector[0]].appointments[kVector[0]].getTime()] = false;
                                             hospital.departments[iVector[0]].doctors[jVector[0]].appointments.erase(
                                                     hospital.departments[iVector[0]].doctors[jVector[0]].appointments.begin() +
                                                     kVector[0]);
@@ -188,7 +236,7 @@ int main() {
                                     }
                                 }
                                 break;
-                            };
+                            }
                             break;
                         }
                         default: {
@@ -201,7 +249,7 @@ int main() {
                                  << hospital.departments[iVector[0]].doctors[jVector[0]].getName() << endl;
                             cout
                                     << "More than one matching appointment found, please select which one you would like to make a transaction with"
-                                    << endl << "Your choice:";
+                                    << endl << "Your choice(Back for 0):";
                             int idchoice = 0;
                             cin >> idchoice;
                             if (idchoice > VectorError-- || idchoice <= 0) {
@@ -220,13 +268,67 @@ int main() {
                                 cin >> fchoice;
                                 switch (fchoice) {
                                     case 1: {
-                                        //buralar hep dutluktu
+                                        for (int i = 0; i < hospital.departments[iVector[idchoice]].patients.size(); i++) {
+                                            if(ID==hospital.departments[iVector[idchoice]].patients[i].getID()){
+                                                name=hospital.departments[iVector[idchoice]].patients[i].getName();
+                                            }
+                                        }
+                                        cout << "Please enter your desired department" << endl;
+                                        hospital.showHospital();
+                                        cin >> prefdepartment;
+
+                                        cout << "Please select your preferred doctor" << endl;
+                                        hospital.departments[prefdepartment].showDoctors();
+                                        cin >> prefdoc;
+                                        hospital.departments[prefdepartment].doctors[prefdoc].viewSchedule();
+                                        cout << "Please enter your desired date and time" << endl;
+                                        cin >> date >> time;
+                                        while (!tryagain) {
+                                            for (int i = 0; i < 7; ++i) {
+                                                if (date == dayNames[i]) {
+                                                    datevalue = i;
+                                                }
+                                            }
+
+                                            if (!(datevalue == -1 || (time < 12 || time > 17))) {
+                                                if (!hospital.departments[prefdepartment].doctors[prefdoc].schedule[datevalue][time -
+                                                                                                                               12]) {
+                                                    hospital.departments[prefdepartment].doctors[prefdoc].schedule[datevalue][time -
+                                                                                                                              12] = true;
+                                                    cout << "Please enter your complaints" << endl;
+                                                    cin.ignore();
+                                                    getline(cin, complaints);
+                                                    if (kVector[idchoice] <
+                                                        hospital.departments[iVector[idchoice]].doctors[jVector[idchoice]].appointments.size()) {
+                                                        hospital.departments[iVector[idchoice]].doctors[jVector[idchoice]].schedule[hospital.departments[iVector[idchoice]].doctors[jVector[idchoice]].appointments[kVector[idchoice]].getDay()][hospital.departments[iVector[idchoice]].doctors[jVector[idchoice]].appointments[kVector[idchoice]].getTime()] = false;
+                                                        hospital.departments[iVector[idchoice]].doctors[jVector[idchoice]].appointments.erase(
+                                                                hospital.departments[iVector[idchoice]].doctors[jVector[idchoice]].appointments.begin() +
+                                                                kVector[idchoice]);
+                                                    } else cout << "vector error" << endl;
+                                                    hospital.departments[prefdepartment].doctors[prefdoc].appointments.push_back(
+                                                            Appointment(ID, datevalue, time - 12, complaints,
+                                                                        hospital.departments[prefdepartment].getName(),
+                                                                        hospital.departments[prefdepartment].doctors[prefdoc].getName()));
+                                                    string tempname = hospital.departments[prefdepartment].getName();
+                                                    hospital.departments[prefdepartment].patients.push_back(Patient(name, ID, tempname));
+                                                    cout << "Your appointment has been changed " << name << endl;
+                                                    tryagain = 1;
+                                                } else {
+                                                    cout << "Time is busy, please select another time" << endl;
+                                                    cin >> date >> time;
+                                                }
+                                            } else {
+                                                cout << "Wrong date or time" << endl;
+                                                break;
+                                            }
+                                        }
                                         break;
                                     }
                                         //vektörü siler ve ana menüye atar
                                     case 2: {
                                         if (kVector[idchoice] <
                                             hospital.departments[iVector[idchoice]].doctors[jVector[idchoice]].appointments.size()) {
+                                            hospital.departments[iVector[idchoice]].doctors[jVector[idchoice]].schedule[hospital.departments[iVector[idchoice]].doctors[jVector[idchoice]].appointments[kVector[idchoice]].getDay()][hospital.departments[iVector[idchoice]].doctors[jVector[idchoice]].appointments[kVector[idchoice]].getTime()] = false;
                                             hospital.departments[iVector[idchoice]].doctors[jVector[idchoice]].appointments.erase(
                                                     hospital.departments[iVector[idchoice]].doctors[jVector[idchoice]].appointments.begin() +
                                                     kVector[idchoice]);
@@ -244,7 +346,7 @@ int main() {
                                         break;
                                     }
                                 }
-                            } while (fchoice != 3 && fchoice != 2);
+                            } while (fchoice != 3 && fchoice != 2&&fchoice != 1);
                             break;
                         }
                     }
