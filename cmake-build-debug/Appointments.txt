@@ -1,3 +1,4 @@
 3333 2 5 heartache Cardiology ThomYorke
 8787 0 1 Headache Cardiology ThomYorke
-6767 0 0 Ligma Cardiology Bartu
+9 0 2 deleted Cardiology ThomYorke
+4545 6 1 Bleeding Cardiology Bartu

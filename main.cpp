@@ -92,7 +92,6 @@ int main() {
                             hospital.departments[prefdepartment].patients.push_back(Patient(name, ID, tempname));
                             tryagain = 1;
                             cout << "Your appointment has been made " << name << endl;
-
                         } else {
                             cout << "Time is busy, please select another time" << endl;
                             cin >> date >> time;
@@ -102,7 +101,6 @@ int main() {
                         break;
                     }
                 }
-
                 break;
             }
             case 2:
@@ -416,8 +414,7 @@ int main() {
                                                 patient.discharge();
                                                 doctor.appointments.erase(doctor.appointments.begin() +
                                                                           patientID2); // iterator points to the beggining then adds the lkeft side as an offset and deletes that
-                                            } else
-                                                cout << "Patient not found" << endl;
+                                            }
                                         }
                                         break;
                                     case 6:
@@ -648,6 +645,6 @@ int main() {
                     std::cout << "Error wrong input" << std::endl;
             }
         }
-        return 0;
     }
+    return 0;
 }

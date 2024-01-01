@@ -54,7 +54,7 @@ void Department::loadPeople() {
             }
         }
     }
-    cout << "debug : Loaded departments" << endl;
+   // cout << "debug : Loaded departments" << endl;
 }
 
 void Department::showDepartment() {

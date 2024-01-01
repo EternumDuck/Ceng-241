@@ -1,5 +1,6 @@
 OmerhanYigit 3333 22 89 180 AB 100 1000 Cardiology
 Peach 6767 0 0 0 0 234 0 Cardiology
+Ozgur 4545 0 0 0 0 0 0 Cardiology
+delete 9 0 0 0 0 0 0 Cardiology
 Luigi 6868 0 67 167 0 126 0 Neurology
 Serdaryildiz 8787 32 67 160 A 100 1020 Urology
-Ozgur 3169 0 0 0 0 0 0 Urology
