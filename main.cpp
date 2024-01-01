@@ -111,7 +111,6 @@ int main() {
                 int ID(0), IDCounter(0),tryagain(0),datevalue(-1),prefdoc(0),prefdepartment(0),time(0);
                 cout << "Please enter your ID:";
                 cin >> ID;
-
                 //id'yi check edip id'nin vektör içinde bulunduğu konumu hafızaya atar
                 vector<int> iVector;
                 vector<int> jVector;
@@ -178,7 +177,6 @@ int main() {
                                                     datevalue = i;
                                                 }
                                             }
-
                                             if (!(datevalue == -1 || (time < 12 || time > 17))) {
                                                 if (!hospital.departments[prefdepartment].doctors[prefdoc].schedule[datevalue][time-12]) {
                                                     hospital.departments[prefdepartment].doctors[prefdoc].schedule[datevalue][time-12] = true;
@@ -248,8 +246,8 @@ int main() {
                             int idchoice = 0;
                             cin >> idchoice;
                             if (idchoice > VectorError-- || idchoice <= 0) {
-                                //kullanıcı IDCounter'dan büyük ya da 0 küçük değer girerse var olmayan bir vektörü seçmiş olur bu da hata verir bu yüzden ana menüye atıyoruz
-                                //0 seçerse hata vermez ama seçim ekranında gözükmeyen bir vektörü seçmiş olur o yüzden <=0
+                                if( idchoice != 0)
+                                    cout << "Wrong Input" << endl;
                                 break;
                             }
                             if (idchoice == IDCounter) {
