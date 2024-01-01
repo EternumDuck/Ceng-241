@@ -121,7 +121,7 @@ int main() {
                         for (int k = 0; k < hospital.departments[i].doctors[j].appointments.size(); k++) {
                             if (ID == hospital.departments[i].doctors[j].appointments[k].getID()) {
                                 if (IDCounter != 0) {
-                                    cout << IDCounter << ". Day: "
+                                    cout << IDCounter << " - Day: "
                                          << hospital.departments[i].doctors[j].appointments[k].getDay() << " Time: "
                                          << hospital.departments[i].doctors[j].appointments[k].getTime()
                                          << " Department Name: " << hospital.departments[i].getName() << " Doctor Name:"
@@ -166,7 +166,6 @@ int main() {
                                         hospital.showHospital();
                                         cin >> prefdepartment;
                                         prefdepartment--;
-
                                         cout << "Please select your preferred doctor" << endl;
                                         hospital.departments[prefdepartment].showDoctors();
                                         cin >> prefdoc;
@@ -181,12 +180,10 @@ int main() {
                                             }
 
                                             if (!(datevalue == -1 || (time < 12 || time > 17))) {
-                                                if (!hospital.departments[prefdepartment].doctors[prefdoc].schedule[datevalue][time -
-                                                                                                                               12]) {
-                                                    hospital.departments[prefdepartment].doctors[prefdoc].schedule[datevalue][time -
-                                                                                                                              12] = true;
+                                                if (!hospital.departments[prefdepartment].doctors[prefdoc].schedule[datevalue][time-12]) {
+                                                    hospital.departments[prefdepartment].doctors[prefdoc].schedule[datevalue][time-12] = true;
                                                     cout << "Please enter your complaints" << endl;
-                                                    cin >> complaints; //changed from getline
+                                                    cin >> complaints;
                                                     if (kVector[0] <
                                                         hospital.departments[iVector[0]].doctors[jVector[0]].appointments.size()) {
                                                         hospital.departments[iVector[0]].doctors[jVector[0]].schedule[hospital.departments[iVector[0]].doctors[jVector[0]].appointments[kVector[0]].getDay()][hospital.departments[iVector[0]].doctors[jVector[0]].appointments[kVector[0]].getTime()] = false;
@@ -238,16 +235,16 @@ int main() {
                             break;
                         }
                         default: {
-                            cout << IDCounter << ". Day: "
+                            cout << IDCounter << " - Day: "
                                  << hospital.departments[iVector[0]].doctors[jVector[0]].appointments[kVector[0]].getDay()
                                  << " Time: "
                                  << hospital.departments[iVector[0]].doctors[jVector[0]].appointments[kVector[0]].getTime()
                                  << " Department Name: " << hospital.departments[iVector[0]].getName()
                                  << " Doctor Name:"
-                                 << hospital.departments[iVector[0]].doctors[jVector[0]].getName() << endl;
-                            cout
-                                    << "More than one matching appointment found, please select which one you would like to make a transaction with"
-                                    << endl << "Your choice(Back for 0):";
+                                 << hospital.departments[iVector[0]].doctors[jVector[0]].getName()
+                                 << endl << "0 - Back"
+                                 << endl << "More than one matching appointment found, please select which one you would like to make a transaction with"
+                                 << endl << "Your choice:";
                             int idchoice = 0;
                             cin >> idchoice;
                             if (idchoice > VectorError-- || idchoice <= 0) {
@@ -274,7 +271,6 @@ int main() {
                                         cout << "Please enter your desired department" << endl;
                                         hospital.showHospital();
                                         cin >> prefdepartment;
-
                                         cout << "Please select your preferred doctor" << endl;
                                         hospital.departments[prefdepartment].showDoctors();
                                         cin >> prefdoc;
@@ -287,15 +283,11 @@ int main() {
                                                     datevalue = i;
                                                 }
                                             }
-
                                             if (!(datevalue == -1 || (time < 12 || time > 17))) {
-                                                if (!hospital.departments[prefdepartment].doctors[prefdoc].schedule[datevalue][time -
-                                                                                                                               12]) {
-                                                    hospital.departments[prefdepartment].doctors[prefdoc].schedule[datevalue][time -
-                                                                                                                              12] = true;
+                                                if (!hospital.departments[prefdepartment].doctors[prefdoc].schedule[datevalue][time-12]) {
+                                                    hospital.departments[prefdepartment].doctors[prefdoc].schedule[datevalue][time-12] = true;
                                                     cout << "Please enter your complaints" << endl;
-                                                    cin.ignore();
-                                                    getline(cin, complaints);
+                                                    cin >> complaints;
                                                     if (kVector[idchoice] <
                                                         hospital.departments[iVector[idchoice]].doctors[jVector[idchoice]].appointments.size()) {
                                                         hospital.departments[iVector[idchoice]].doctors[jVector[idchoice]].schedule[hospital.departments[iVector[idchoice]].doctors[jVector[idchoice]].appointments[kVector[idchoice]].getDay()][hospital.departments[iVector[idchoice]].doctors[jVector[idchoice]].appointments[kVector[idchoice]].getTime()] = false;
