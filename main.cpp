@@ -269,6 +269,7 @@ int main() {
                                         cout << "Please enter your desired department" << endl;
                                         hospital.showHospital();
                                         cin >> prefdepartment;
+                                        prefdepartment--;
                                         cout << "Please select your preferred doctor" << endl;
                                         hospital.departments[prefdepartment].showDoctors();
                                         cin >> prefdoc;
