@@ -11,6 +11,9 @@
 
 using namespace std;
 
+// Github link
+// https://github.com/EternumDuck/Ceng-241
+
 int main() {
 
     Hospital hospital("Cankaya Hospital");

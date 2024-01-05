@@ -30,7 +30,7 @@ public:
 
     }
 
-    const std::string& getName() const;
+    string getName();
     int getID() const;
     void setTreatment(string treatment);
     void discharge();

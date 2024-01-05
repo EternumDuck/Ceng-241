@@ -18,8 +18,6 @@ public:
     Hospital(string name);
     ~Hospital();
     void addDepartment(string depname,int rooms);
-    Doctor hireNewDoc();
-    Doctor fireDoc();
     void showHospital();
     string getName();
 
