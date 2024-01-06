@@ -1,8 +1,7 @@
 #include "Patient.h"
 
 #include <utility>
-
-const std::string& Patient::getName() const {
+ std::string Patient::getName() {
     return name;
 }
 void Patient::setAge(int age) {
